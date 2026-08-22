@@ -75,6 +75,9 @@
   @keyframes kb{from{transform:scale(1.03)}to{transform:scale(1.13)}}
   .lede{font-size:clamp(1.12rem,2.2vw,1.4rem);line-height:1.55;color:var(--bone-2);max-width:52ch;font-weight:400}
   .lede b{color:var(--bone);font-weight:500}
+  .benefits{list-style:none;display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:32px;max-width:58ch}
+  .benefits li{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--bone);display:flex;align-items:center;gap:9px}
+  .benefits li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brass);flex:0 0 6px}
   .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px;align-items:center}
   .btn{font-family:var(--body);font-weight:600;font-size:15px;padding:17px 30px;border-radius:2px;transition:.25s;display:inline-flex;align-items:center;gap:10px}
   .btn.solid{background:var(--brass);color:#0E1417}
@@ -282,7 +285,14 @@
   <div class="eyebrow">Private Mediation &middot; Business &middot; Property &middot; Family</div>
   <h1>The goal isn&rsquo;t to win the argument. It&rsquo;s to <em>solve the problem.</em></h1>
   <div class="rule" aria-hidden="true"></div>
-  <p class="lede">Resolve Mediation helps people work through business, property, and family disputes &mdash; looking past the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next. Online, in weeks, at a <b>fixed fee</b>.</p>
+  <p class="lede">Resolve Mediation helps people work through business, property, and family disputes &mdash; looking past the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next.</p>
+  <ul class="benefits" aria-label="How mediation is different">
+    <li>In weeks, not years</li>
+    <li>One fixed fee</li>
+    <li>Private and off the record</li>
+    <li>You decide, not a judge</li>
+    <li>No forms, no court dates</li>
+  </ul>
   <div class="cta-row">
     <a class="btn solid" href="#inquire">Start a confidential inquiry <span class="arw">&rarr;</span></a>
     <a class="btn ghost" href="#how">See how it works</a>
