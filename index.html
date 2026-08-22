@@ -92,6 +92,8 @@
   .tl{color:var(--brass);font-style:italic}
   .beat{margin-top:12px;color:var(--bone-2);font-size:1.16rem;line-height:1.62;max-width:58ch}
   .beat b{color:var(--bone);font-weight:600}
+  .video-wrap{margin:6px auto 46px;max-width:980px;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 34px 80px -34px rgba(0,0,0,.65)}
+  .video-wrap video{display:block;width:100%;height:auto;background:#000}
 
   /* ledger */
   .ledger{display:grid;grid-template-columns:180px 1fr 1fr;border-top:1px solid var(--line)}
@@ -400,6 +402,11 @@
   <div class="kick">
     <div class="eyebrow">How it works</div>
     <h2>Structured, written, and <em>done in weeks.</em></h2>
+  </div>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata" poster="how-it-works-poster.jpg" aria-label="How Resolve Mediation works">
+      <source src="how-it-works.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="steps">
     <div class="step">
