@@ -83,7 +83,7 @@
   .btn.ghost:hover{color:var(--brass)}
   .btn .arw{transition:transform .25s}.btn:hover .arw{transform:translateX(4px)}
 
-  section{padding:104px 0;border-top:1px solid var(--line-2)}
+  section{padding:78px 0;border-top:1px solid var(--line-2)}
   .kick{margin-bottom:40px}
   h2{font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.04;font-weight:300;margin-top:14px;max-width:20ch}
   h2 em{font-style:normal;color:inherit}
@@ -93,8 +93,10 @@
   .lrow{display:contents}
   .ledger .cell{padding:26px 22px;border-bottom:1px solid var(--line-2)}
   .ledger .rlabel{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);align-self:center}
-  .ledger .court{color:var(--bone-2)}
-  .ledger .med{color:var(--bone);background:linear-gradient(180deg,rgba(198,161,91,.05),transparent)}
+  .ledger .court{color:var(--bone-2);background:linear-gradient(180deg,rgba(199,123,107,.05),transparent)}
+  .ledger .med{color:var(--bone);background:linear-gradient(180deg,rgba(95,176,154,.06),transparent)}
+  .ledger .court .big{color:#CB8375}
+  .ledger .med .big{color:var(--brass)}
   .ledger .htitle{font-family:var(--disp);font-size:1.35rem;padding-top:8px;padding-bottom:18px;border-bottom:1px solid var(--line)}
   .ledger .med .htitle-in{color:var(--brass)}
   .court-reality{max-width:62ch;margin:46px auto 0;font-size:1.14rem;line-height:1.72;color:var(--bone-2);text-align:center}
@@ -104,7 +106,7 @@
 
   /* quote */
   .quote-sec{background:var(--ground-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  blockquote{font-family:var(--disp);font-weight:300;font-size:clamp(1.7rem,4vw,3rem);line-height:1.22;max-width:20ch;margin:0 auto;text-align:center;text-wrap:balance}
+  blockquote{font-family:var(--disp);font-weight:400;font-size:clamp(1.3rem,2.5vw,1.85rem);line-height:1.32;max-width:30ch;margin:0 auto;text-align:center;text-wrap:balance}
   blockquote .em{color:var(--brass);font-style:italic}
   .qby{display:block;margin-top:34px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);text-align:center}
 
@@ -141,16 +143,24 @@
   @media(max-width:820px){.rgrid{grid-template-columns:1fr}}
 
   /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:8px}
-  .step{padding:40px 30px 44px;border-right:1px solid var(--line-2)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:44px}
+  .step{position:relative;padding-top:60px}
+  .step .num{position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;background:var(--ground);border:1px solid var(--brass);color:var(--brass);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:16px;z-index:1}
+  .step::after{content:"";position:absolute;top:21px;left:54px;right:-32px;height:1px;background:var(--line)}
+  .step:last-child::after{display:none}
+  .step .phase{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
   .step:last-child{border-right:0}
   .step .n{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--brass)}
-  .step h3{font-size:1.55rem;font-weight:400;margin:18px 0 12px}
+  .step h3{font-size:1.35rem;font-weight:600;letter-spacing:-.02em;margin:8px 0 12px}
   .step p{color:var(--bone-2);font-size:15.5px;line-height:1.55}
   .line-note{margin-top:42px;border-top:1px solid var(--line);padding-top:28px;max-width:72ch}
   .line-note .ln-h{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:13px}
   .line-note p{color:var(--bone-2);font-size:15.5px;line-height:1.62}
   .line-note p b{color:var(--bone);font-weight:500}
+  .pstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);max-width:800px;margin:34px auto 6px;text-align:left;border-radius:3px;overflow:hidden}
+  .ps{background:var(--ground);padding:18px 20px;font-size:14px;color:var(--bone-2);line-height:1.42}
+  .ps-t{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:7px}
+  @media(max-width:640px){.pstrip{grid-template-columns:1fr 1fr}}
 
   /* who */
   .who{display:grid;grid-template-columns:1fr 1.35fr;gap:60px;align-items:start}
@@ -219,7 +229,7 @@
 
   @media(max-width:820px){
     .who{grid-template-columns:1fr;gap:34px}
-    .steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line-2)}
+    .steps{grid-template-columns:1fr;gap:38px}.step::after{display:none}
     .fees{grid-template-columns:1fr}
     .ledger{grid-template-columns:1fr;border-top:0}
     .ledger .rlabel{border-bottom:0;padding-bottom:4px;padding-top:26px;color:var(--brass)}
@@ -358,7 +368,7 @@
   <div class="rgrid three">
     <div class="rc"><div class="rt">Business</div><div class="rd">Partnerships and shareholders, contracts and vendors, business break-ups and negotiated exits &mdash; where two sides still have to decide how it ends.</div></div>
     <div class="rc"><div class="rt">Property</div><div class="rd">Failed closings and deposits, co-ownership and partition, assignments, estate property, and commercial leases &mdash; the deal, and what it&rsquo;s really worth.</div></div>
-    <div class="rc"><div class="rt">Family</div><div class="rd">Family businesses, siblings and inheritances, estates and shared assets &mdash; the disputes where the relationship matters as much as the money.</div></div>
+    <div class="rc"><div class="rt">Family</div><div class="rd">Family businesses, siblings and inheritances, estates, shared assets, and intergenerational disputes &mdash; where the relationship matters as much as the money.</div></div>
   </div>
   <p class="resolve-more"><span class="rm-label">The bigger picture</span>In every one of these, the legal question is only part of it. Money, timing, control, pride, relationships, and what happens tomorrow matter just as much &mdash; and that&rsquo;s usually where the resolution actually lives.</p>
   <p class="fee-note" style="margin-top:26px">Some matters belong elsewhere &mdash; separation, divorce, and parenting (accredited family mediation), residential tenancies (LTB), and construction liens (Construction Act). If yours is one of them, I&rsquo;ll tell you plainly.</p>
@@ -371,17 +381,20 @@
   </div>
   <div class="steps">
     <div class="step">
-      <div class="n">01 &middot; The Framework</div>
+      <div class="num">1</div>
+      <div class="phase">The Framework</div>
       <h3>The dispute, in writing</h3>
       <p>Both sides receive the same document: what the contract says, how the law reads in both directions, what a court could actually do, and what the fight would cost. It collapses &ldquo;my side is obviously right&rdquo; for everyone at once.</p>
     </div>
     <div class="step">
-      <div class="n">02 &middot; The private read</div>
+      <div class="num">2</div>
+      <div class="phase">The private read</div>
       <h3>Where you really stand</h3>
       <p>Each side gets a candid, confidential assessment &mdash; your strengths, your exposure, and a realistic settlement range. Framed as probability, never as a promise, and never shared with the other party.</p>
     </div>
     <div class="step">
-      <div class="n">03 &middot; The session</div>
+      <div class="num">3</div>
+      <div class="phase">The session</div>
       <h3>A signed agreement</h3>
       <p>A focused online session where each side is heard, ending in a written memorandum your lawyers turn into a binding deal. You keep control the whole way. Nothing is decided for you.</p>
     </div>
@@ -415,7 +428,7 @@
     </div>
     <div>
       <div class="eyebrow" style="margin-bottom:22px">Who runs the room</div>
-      <p>For close to a decade I practised business and real estate law in Ontario and closed several hundred transactions. I read a file the way a lawyer does &mdash; the contract first, the exposure named, no surprises &mdash; and I read a property the way an agent does, because the deal and what happens to it are often the heart of the argument.</p>
+      <p>For close to a decade I practised business and real estate law in Ontario, and worked through several hundred transactions and complex matters. But the disputes worth solving were never only about the law. They were about people, money, timing, pride, and what happens next. So that is how I work a problem. I look at the whole board: the legal exposure, the numbers, the relationships, the incentives, and the outcome each side actually needs. I leave no stone unturned, and I stay calm while I turn them over.</p>
       <p><b>I am neutral by design.</b> I act for neither side, I give no legal advice, and I recommend every party get their own counsel. The decision is always yours.</p>
       <div class="pledge">
         <div class="ph">The impartiality rule</div>
@@ -492,6 +505,12 @@
 <section id="inquire" class="final rv"><div class="wrap">
   <div class="eyebrow" style="margin-bottom:26px">Start here</div>
   <h2>Bring the dispute. Leave with an <em>agreement.</em></h2>
+  <div class="pstrip">
+    <div class="ps"><span class="ps-t">Today</span>You send your inquiry</div>
+    <div class="ps"><span class="ps-t">Within 48 hours</span>Invitation to the other side</div>
+    <div class="ps"><span class="ps-t">5 business days</span>The Framework, in hand</div>
+    <div class="ps"><span class="ps-t">2&ndash;3 weeks</span>Your session</div>
+  </div>
   <!-- Deploy: add action="https://formspree.io/f/XXXXXX" method="POST" and remove the preventDefault in the script to POST for real. -->
   <form class="inq" id="inqform" novalidate>
     <div class="frow">
