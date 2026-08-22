@@ -238,15 +238,21 @@
     .ledger .htitle{display:none}
     .ledger .med,.ledger .court{border-bottom:1px solid var(--line-2)}
     .ledger .med{border-left:2px solid var(--brass)}
-    .ledger .court:not(.htitle)::before{content:"In court";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-2);margin-bottom:9px}
+    .ledger .court:not(.htitle)::before{content:"In court";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#CB8375;margin-bottom:9px}
     .ledger .med:not(.htitle)::before{content:"In mediation";display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:9px}
   }
-  @media(max-width:480px){
+  @media(max-width:520px){
+    .wrap{padding:0 22px}
     nav .in{padding:15px 20px}
-    .mark{font-size:17px}
+    .mark{font-size:18px}
     .navcta{padding:9px 15px;font-size:11px;letter-spacing:.04em;white-space:nowrap}
-    header{padding:150px 0 92px}
-    h1{font-size:clamp(2.7rem,11vw,3.4rem)}
+    header{padding:82px 0 54px}
+    h1{font-size:clamp(2rem,8.4vw,2.5rem);line-height:1.06;margin-top:14px}
+    .rule{margin:22px 0 20px}
+    .lede{font-size:1rem;line-height:1.48}
+    .benefits{flex-direction:column;gap:11px;margin-top:20px}
+    .benefits li{font-size:13.5px}
+    .cta-row{margin-top:24px;gap:12px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important}
@@ -362,7 +368,7 @@
     <h2>What a courtroom isn&rsquo;t built to <em>reach.</em></h2>
   </div>
   <div class="why-list">
-    <div class="why"><h3>A solution the law can&rsquo;t order</h3><p>A court can award money or an injunction &mdash; that is all it has. Mediation can build a payment plan, an apology, a revised deal, a clean exit: whatever actually resolves it.</p></div>
+    <div class="why"><h3>Solutions the law can&rsquo;t reach</h3><p>A court is bound to money or an injunction, and to the question of <em>who</em> is right. Mediation is free to think creatively &mdash; a payment plan, an apology, a revised deal, a clean exit, an arrangement no judge could order. The better question isn&rsquo;t who is right; it&rsquo;s what actually works here.</p></div>
     <div class="why"><h3>The relationship, intact</h3><p>Co-owners, family, partners, neighbours who still have to deal with each other afterward. A ruling names a winner; mediation lets both sides move on.</p></div>
     <div class="why"><h3>The real reason, not just who&rsquo;s liable</h3><p>Court asks what happened and who pays. Mediation reaches the misunderstanding or the interest underneath &mdash; which is usually where the resolution actually lives.</p></div>
     <div class="why"><h3>Control over how it ends</h3><p>In court, a stranger you never met dictates the outcome. In mediation nothing is imposed &mdash; you decide, and you sign only what you agree to.</p></div>
