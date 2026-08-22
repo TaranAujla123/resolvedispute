@@ -13,8 +13,8 @@
     --disp:'Hanken Grotesk',system-ui,sans-serif; --body:'Hanken Grotesk',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-  body{background:var(--ground);color:var(--bone);font-family:var(--body);font-size:17px;line-height:1.6;
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:17px}
+  body{background:var(--ground);color:var(--bone);font-family:var(--body);font-size:18px;line-height:1.62;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
   /* film grain */
   body::before{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
@@ -33,7 +33,7 @@
     background:linear-gradient(180deg,rgba(17,19,22,.90),rgba(17,19,22,.58));border-bottom:1px solid transparent;transition:border-color .3s}
   nav.scrolled{border-bottom-color:var(--line-2)}
   nav .in{max-width:1120px;margin:0 auto;padding:19px 32px;display:flex;align-items:center;justify-content:space-between}
-  .mark{font-family:var(--disp);font-size:21px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--bone);display:inline-flex;align-items:baseline}
+  .mark{font-family:var(--disp);font-size:24px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--bone);display:inline-flex;align-items:baseline}
   .mark .dot{color:var(--brass);font-size:1.75em;line-height:0;margin-left:.5px}
   .navcta{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--bone);border:1px solid var(--line);padding:11px 20px;border-radius:2px;transition:.25s}
   .navcta:hover{border-color:var(--brass);color:var(--brass)}
@@ -75,7 +75,7 @@
   .lede{font-size:clamp(1.12rem,2.2vw,1.4rem);line-height:1.55;color:var(--bone-2);max-width:52ch;font-weight:400}
   .lede b{color:var(--bone);font-weight:500}
   .benefits{list-style:none;display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:32px;max-width:58ch}
-  .benefits li{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--bone);display:flex;align-items:center;gap:9px}
+  .benefits li{font-family:var(--mono);font-size:13.5px;letter-spacing:.02em;color:var(--bone);display:flex;align-items:center;gap:9px}
   .benefits li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brass);flex:0 0 6px}
   .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:44px;align-items:center}
   .btn{font-family:var(--body);font-weight:600;font-size:15px;padding:17px 30px;border-radius:2px;transition:.25s;display:inline-flex;align-items:center;gap:10px}
@@ -89,6 +89,7 @@
   .kick{margin-bottom:40px}
   h2{font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.04;font-weight:300;margin-top:14px;max-width:20ch}
   h2 em{font-style:normal;color:inherit}
+  .tl{color:var(--brass);font-style:italic}
 
   /* ledger */
   .ledger{display:grid;grid-template-columns:180px 1fr 1fr;border-top:1px solid var(--line)}
@@ -154,7 +155,7 @@
   .step:last-child{border-right:0}
   .step .n{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--brass)}
   .step h3{font-size:1.35rem;font-weight:600;letter-spacing:-.02em;margin:8px 0 12px}
-  .step p{color:var(--bone-2);font-size:15.5px;line-height:1.55}
+  .step p{color:var(--bone-2);font-size:16.5px;line-height:1.55}
   .line-note{margin-top:42px;border-top:1px solid var(--line);padding-top:28px;max-width:72ch}
   .line-note .ln-h{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:13px}
   .line-note p{color:var(--bone-2);font-size:15.5px;line-height:1.62}
@@ -234,7 +235,8 @@
     .steps{grid-template-columns:1fr;gap:38px}.step::after{display:none}
     .fees{grid-template-columns:1fr}
     .ledger{grid-template-columns:1fr;border-top:0}
-    .ledger .rlabel{border-bottom:0;padding-bottom:4px;padding-top:26px;color:var(--brass)}
+    .ledger .rlabel{border-bottom:0;margin:34px 0 8px;justify-self:start;display:inline-block;background:var(--brass);color:#0E1417;font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:7px 15px;border-radius:100px}
+    .ledger .rlabel:empty{display:none}
     .ledger .htitle{display:none}
     .ledger .med,.ledger .court{border-bottom:1px solid var(--line-2)}
     .ledger .med{border-left:2px solid var(--brass)}
@@ -244,14 +246,14 @@
   @media(max-width:520px){
     .wrap{padding:0 22px}
     nav .in{padding:15px 20px}
-    .mark{font-size:18px}
+    .mark{font-size:20px}
     .navcta{padding:9px 15px;font-size:11px;letter-spacing:.04em;white-space:nowrap}
     header{padding:104px 0 54px}
     h1{font-size:clamp(2rem,8.4vw,2.5rem);line-height:1.06;margin-top:14px}
     .rule{margin:22px 0 20px}
     .lede{font-size:1rem;line-height:1.48}
     .benefits{flex-direction:column;gap:11px;margin-top:20px}
-    .benefits li{font-size:13.5px}
+    .benefits li{font-size:15px}
     .cta-row{margin-top:24px;gap:12px}
   }
   @media(prefers-reduced-motion:reduce){
@@ -357,9 +359,10 @@
 
 <section class="adv rv"><div class="wrap">
   <div class="kick"><div class="eyebrow">The difference</div></div>
-  <h2>There is a solution inside almost every dispute. The work is finding it &mdash; <em>calmly, and clearly.</em></h2>
-  <p class="note">I&rsquo;m not here to be your litigator, and I won&rsquo;t pretend to predict how a court would rule. What I bring is having seen that road from the inside: I know how slow, costly, and draining it is &mdash; and that it almost always ends in a settlement anyway. Mediation simply gets you there at the start, without the years and the fees.</p>
-  <p class="note">And a real estate dispute is rarely only a legal question. There&rsquo;s the deal itself and what a property is actually worth &mdash; which I understand as a REALTOR&reg; &mdash; and beneath it, a relationship, a business reality, and two sides each certain they are right. Even with their own lawyers, each side is locked inside its own view. My role is the outside seat: the neutral who sees the whole board, keeps the room calm, and helps you reach a resolution a courtroom isn&rsquo;t built to give.</p>
+  <h2>There is a solution inside almost every dispute. The work is finding it &mdash; <span class="tl">calmly, and clearly.</span></h2>
+  <p class="note">I&rsquo;m not here to be your litigator, and I won&rsquo;t pretend to predict how a court would rule. What I bring is having seen that road from the inside. I know how slow, costly, and draining it is, and that it almost always ends in a settlement anyway. Mediation just gets you there at the start.</p>
+  <p class="note">And a dispute is rarely only a legal question. Beneath it there is money, a business reality, a relationship, and two sides each certain they are right &mdash; and even with their own lawyers, each side is locked inside its own view.</p>
+  <p class="note">My role is the outside seat: the neutral who sees the whole board, keeps the room calm, and finds the resolution a courtroom isn&rsquo;t built to give.</p>
 </div></section>
 
 <section class="rv"><div class="wrap">
@@ -443,7 +446,8 @@
     </div>
     <div>
       <div class="eyebrow" style="margin-bottom:22px">Who runs the room</div>
-      <p>For close to a decade I practised business and real estate law in Ontario, and worked through several hundred transactions and complex matters. But the disputes worth solving were never only about the law. They were about people, money, timing, pride, and what happens next. So that is how I work a problem. I look at the whole board: the legal exposure, the numbers, the relationships, the incentives, and the outcome each side actually needs. I leave no stone unturned, and I stay calm while I turn them over.</p>
+      <p>For close to a decade I practised business and real estate law in Ontario, and worked through several hundred transactions and complex matters. But the disputes worth solving were never only about the law. They were about people, money, timing, pride, and what happens next.</p>
+      <p>So that is how I work a problem. I look at the whole board: the legal exposure, the numbers, the relationships, the incentives, and the outcome each side actually needs. I leave no stone unturned, and I stay calm while I turn them over.</p>
       <p><b>I am neutral by design.</b> I act for neither side, I give no legal advice, and I recommend every party get their own counsel. The decision is always yours.</p>
       <div class="pledge">
         <div class="ph">The impartiality rule</div>
