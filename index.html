@@ -554,43 +554,66 @@
     <div class="ps"><span class="ps-t">5 business days</span>The Framework, in hand</div>
     <div class="ps"><span class="ps-t">2&ndash;3 weeks</span>Your session</div>
   </div>
-  <!-- Deploy: add action="https://formspree.io/f/XXXXXX" method="POST" and remove the preventDefault in the script to POST for real. -->
+  <style>
+    .wiz-bar{display:flex;gap:6px;margin:0 0 26px}
+    .wiz-bar span{flex:1;height:3px;border-radius:2px;background:var(--line)}
+    .wiz-bar span.on{background:var(--brass)}
+    .wiz-step[hidden]{display:none}
+    .wiz-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 14px}
+    .optgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 22px}
+    .optgrid label{position:relative;display:block;margin:0}
+    .optgrid input{position:absolute;opacity:0;pointer-events:none}
+    .optgrid .opt{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 14px;font-size:14.5px;color:var(--bone);background:var(--panel);cursor:pointer;line-height:1.35;min-height:44px}
+    .optgrid input:checked + .opt{border-color:var(--brass);background:rgba(95,176,154,.09)}
+    .feecard{border:1px solid rgba(95,176,154,.4);background:rgba(95,176,154,.07);border-radius:12px;padding:20px 20px;margin:4px 0 22px}
+    .feecard[hidden]{display:none}
+    .feecard .fk{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin:0 0 8px}
+    .feecard .fp{font-size:24px;font-weight:700;color:var(--bone)}
+    .feecard .fp small{font-size:14px;font-weight:400;color:var(--dim);margin-left:8px}
+    .feecard .fd{font-size:13.5px;color:var(--dim);line-height:1.55;margin-top:8px}
+    .wiz-nav{display:flex;gap:12px;align-items:center;margin-top:6px}
+    .wiz-nav .back{background:none;border:1px solid var(--line);color:var(--dim);border-radius:10px;padding:14px 20px;font-size:14px;cursor:pointer}
+    .wiz-review{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:0 0 20px;display:flex;flex-direction:column;gap:10px}
+    .wiz-review .rrow{display:flex;justify-content:space-between;gap:16px;font-size:13.5px}
+    .wiz-review .rk{color:var(--dim)}
+    .wiz-review .rvv{color:var(--bone);text-align:right}
+  </style>
   <form class="inq" id="inqform" novalidate>
-    <div class="frow">
-      <label>First name<input name="first" autocomplete="given-name" required></label>
-      <label>Last name<input name="last" autocomplete="family-name"></label>
+    <div class="wiz-bar" id="wizbar"><span class="on"></span><span></span><span></span><span></span></div>
+
+    <div class="wiz-step" id="ws1">
+      <p class="wiz-label">Step 1 of 4 &middot; The dispute</p>
+      <div class="optgrid" id="typegrid">
+        <label><input type="radio" name="type" value="Failed closing / deposit"><span class="opt">Failed closing / deposit</span></label>
+        <label><input type="radio" name="type" value="Co-ownership / partition"><span class="opt">Co-ownership / partition</span></label>
+        <label><input type="radio" name="type" value="Assignment dispute"><span class="opt">Assignment dispute</span></label>
+        <label><input type="radio" name="type" value="Estate property"><span class="opt">Estate property</span></label>
+        <label><input type="radio" name="type" value="Post-closing / disclosure"><span class="opt">Post-closing / disclosure</span></label>
+        <label><input type="radio" name="type" value="Commercial lease"><span class="opt">Commercial lease</span></label>
+        <label><input type="radio" name="type" value="Commercial contract"><span class="opt">Commercial contract</span></label>
+        <label><input type="radio" name="type" value="Partnership / shareholder"><span class="opt">Partnership / shareholder</span></label>
+        <label><input type="radio" name="type" value="Other"><span class="opt">Other</span></label>
+      </div>
+      <p class="wiz-label">Roughly what is at stake</p>
+      <div class="optgrid" id="amtgrid">
+        <label><input type="radio" name="amount" value="Under $25,000"><span class="opt">Under $25,000</span></label>
+        <label><input type="radio" name="amount" value="$25,000 - $100,000"><span class="opt">$25,000 &ndash; $100,000</span></label>
+        <label><input type="radio" name="amount" value="$100,000 - $500,000"><span class="opt">$100,000 &ndash; $500,000</span></label>
+        <label><input type="radio" name="amount" value="Over $500,000"><span class="opt">Over $500,000</span></label>
+        <label><input type="radio" name="amount" value="Not sure"><span class="opt">Not sure yet</span></label>
+      </div>
+      <div class="feecard" id="feecard" hidden>
+        <p class="fk">Your fixed fee, before anything begins</p>
+        <p class="fp" id="feeprice"></p>
+        <p class="fd" id="feedesc"></p>
+      </div>
+      <div class="wiz-nav"><button type="button" class="wnext" data-next="2">Continue</button></div>
     </div>
-    <div class="frow">
-      <label>Email<input name="email" type="email" autocomplete="email" required></label>
-      <label>Phone <span style="text-transform:none;letter-spacing:0;color:var(--dim)">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
-    </div>
-    <label>Nature of the dispute
-      <select name="type" required>
-        <option value="" disabled selected hidden>Select one&hellip;</option>
-        <option>Failed closing / deposit</option>
-        <option>Co-ownership / partition</option>
-        <option>Assignment dispute</option>
-        <option>Estate property</option>
-        <option>Post-closing / disclosure</option>
-        <option>Commercial lease</option>
-        <option>Commercial contract</option>
-        <option>Partnership / shareholder</option>
-        <option>Other</option>
-      </select>
-    </label>
-    <label>Briefly, what is the dispute?<textarea name="detail" rows="3"></textarea></label>
-    <div class="frow">
-      <label>Amount in dispute
-        <select name="amount">
-          <option value="" disabled selected hidden>Select a range&hellip;</option>
-          <option>Under $25,000</option>
-          <option>$25,000 &ndash; $100,000</option>
-          <option>$100,000 &ndash; $500,000</option>
-          <option>Over $500,000</option>
-          <option>Not sure</option>
-        </select>
-      </label>
-      <label>Is the other party aware?
+
+    <div class="wiz-step" id="ws2" hidden>
+      <p class="wiz-label">Step 2 of 4 &middot; The situation</p>
+      <label>Briefly, what is the dispute?<textarea name="detail" rows="4" placeholder="A few sentences is plenty."></textarea></label>
+      <label>Is the other party aware you are looking at mediation?
         <select name="aware">
           <option value="" disabled selected hidden>Select one&hellip;</option>
           <option>Yes</option>
@@ -598,10 +621,29 @@
           <option>Not sure</option>
         </select>
       </label>
+      <div class="wiz-nav"><button type="button" class="back" data-back="1">Back</button><button type="button" class="wnext" data-next="3">Continue</button></div>
     </div>
-    <label class="consent"><input type="checkbox" name="consent" required><span>I understand this is an inquiry, not legal advice, and that sending it does not create any professional relationship.</span></label>
-    <button type="submit">Start a confidential inquiry</button>
-    <p class="inq-note">Private and without obligation. Prefer to talk first? Call <a href="tel:+13656457332">(365)&nbsp;645-7332</a>.</p>
+
+    <div class="wiz-step" id="ws3" hidden>
+      <p class="wiz-label">Step 3 of 4 &middot; You</p>
+      <div class="frow">
+        <label>First name<input name="first" autocomplete="given-name" required></label>
+        <label>Last name<input name="last" autocomplete="family-name"></label>
+      </div>
+      <div class="frow">
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Phone <span style="text-transform:none;letter-spacing:0;color:var(--dim)">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="wiz-nav"><button type="button" class="back" data-back="2">Back</button><button type="button" class="wnext" data-next="4">Continue</button></div>
+    </div>
+
+    <div class="wiz-step" id="ws4" hidden>
+      <p class="wiz-label">Step 4 of 4 &middot; Review and send</p>
+      <div class="wiz-review" id="wizreview"></div>
+      <label class="consent"><input type="checkbox" name="consent" required><span>I understand this is an inquiry, not legal advice, and that sending it does not create any professional relationship.</span></label>
+      <div class="wiz-nav"><button type="button" class="back" data-back="3">Back</button><button type="submit" id="wizsend">Send the inquiry</button></div>
+      <p class="inq-note">Nothing was sent until now. Private and without obligation. Prefer to talk first? Call <a href="tel:+13656457332">(365)&nbsp;645-7332</a>.</p>
+    </div>
   </form>
   <div class="inq-done" id="inqdone" hidden>
     <h3>Thank you. Your inquiry is in.</h3>
@@ -628,9 +670,58 @@
       function c(){s.style.color=s.value?'var(--bone)':'var(--dim)';}
       s.addEventListener('change',c);c();
     });
+    var FEES={
+      'Under $25,000':{p:'from $2,200',t:'Half day, 3 hours',d:'Both written reports plus a focused online session. Suited to a single clear question. The exact fixed price is set and agreed before we begin, and split between the parties unless agreed otherwise.'},
+      '$25,000 - $100,000':{p:'from $3,800',t:'Full day, 6 hours',d:'Both reports and a full session. The exact fixed price is set and agreed before we begin, and split between the parties unless agreed otherwise.'},
+      '$100,000 - $500,000':{p:'from $3,800',t:'Full day, 6 hours',d:'Both reports and a full session, with the fixed quote scaled to the complexity and amount at stake. Agreed before we begin; split between the parties unless agreed otherwise.'},
+      'Over $500,000':{p:'Fixed quote',t:'Custom engagement',d:'Scoped to the complexity and amount at stake. Still one fixed number, known and agreed before anything begins.'},
+      'Not sure':{p:'from $900',t:'Start with the Framework Report',d:'The written analysis alone, joint and private, with no session. The cheapest way to learn where you stand. Session pricing is fixed and agreed before anything begins.'}
+    };
+    function q(sel){return inqf.querySelector(sel)}
+    function val(name){var el=inqf.querySelector('[name="'+name+'"]:checked')||inqf.querySelector('[name="'+name+'"]');return el?el.value:''}
+    function showFee(){
+      var a=val('amount');var card=q('#feecard');
+      if(a&&FEES[a]){card.hidden=false;
+        q('#feeprice').innerHTML=FEES[a].p+' <small>'+FEES[a].t+'</small>';
+        q('#feedesc').textContent=FEES[a].d;}
+    }
+    Array.prototype.forEach.call(inqf.querySelectorAll('#amtgrid input'),function(r){r.addEventListener('change',showFee)});
+    function goto(n){
+      for(var i=1;i<=4;i++){q('#ws'+i).hidden=(i!==n)}
+      var bars=document.getElementById('wizbar').children;
+      for(var j=0;j<4;j++){bars[j].className=(j<n)?'on':''}
+      inqf.scrollIntoView({behavior:'smooth',block:'start'});
+      if(n===4){var rows=[['Dispute',val('type')||'Not selected'],['At stake',val('amount')||'Not selected'],['Name',(val('first')+' '+val('last')).trim()],['Email',val('email')],['Phone',val('phone')||'Not provided']];
+        document.getElementById('wizreview').innerHTML=rows.map(function(r){return '<div class="rrow"><span class="rk">'+r[0]+'</span><span class="rvv"></span></div>'}).join('');
+        Array.prototype.forEach.call(document.querySelectorAll('#wizreview .rvv'),function(el,i){el.textContent=rows[i][1]});}
+    }
+    Array.prototype.forEach.call(inqf.querySelectorAll('.wnext'),function(b){b.addEventListener('click',function(){
+      var n=parseInt(b.getAttribute('data-next'),10);
+      if(n===2&&!val('type')){alert('Pick the closest fit for the dispute.');return}
+      if(n===2&&!inqf.querySelector('[name="amount"]:checked')){alert('Pick a range for what is at stake.');return}
+      if(n===4){var f=q('[name="first"]'),e=q('[name="email"]');
+        if(!f.value.trim()){f.focus();f.reportValidity&&f.reportValidity();return}
+        if(!e.value.trim()||!e.checkValidity()){e.focus();e.reportValidity&&e.reportValidity();return}}
+      goto(n);
+    })});
+    Array.prototype.forEach.call(inqf.querySelectorAll('.back'),function(b){b.addEventListener('click',function(){goto(parseInt(b.getAttribute('data-back'),10))})});
     inqf.addEventListener('submit',function(e){e.preventDefault();
-      if(!inqf.checkValidity()){if(inqf.reportValidity)inqf.reportValidity();return;}
-      inqf.style.display='none';var d=document.getElementById('inqdone');d.hidden=false;
-      d.scrollIntoView({behavior:'smooth',block:'center'});});
+      var c=q('[name="consent"]');
+      if(!c.checked){c.focus();c.reportValidity&&c.reportValidity();return}
+      var btn=document.getElementById('wizsend');btn.disabled=true;btn.textContent='Sending\u2026';
+      var fd=new FormData();
+      fd.append('_subject','Resolve Mediation - new inquiry');
+      fd.append('source','resolvedispute.ca wizard');
+      fd.append('dispute_type',val('type'));fd.append('amount',val('amount'));
+      fd.append('detail',val('detail'));fd.append('other_party_aware',val('aware'));
+      fd.append('name',(val('first')+' '+val('last')).trim());
+      fd.append('email',val('email'));fd.append('phone',val('phone'));
+      fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+        .then(function(r){if(!r.ok)throw new Error('bad');
+          inqf.style.display='none';var d=document.getElementById('inqdone');d.hidden=false;
+          d.scrollIntoView({behavior:'smooth',block:'center'});})
+        .catch(function(){btn.disabled=false;btn.textContent='Send the inquiry';
+          alert('That did not go through. Please call or text (365) 645-7332, or try again.');});
+    });
   }
 </script>
