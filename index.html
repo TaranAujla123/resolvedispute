@@ -550,7 +550,7 @@
   <h2>Bring the dispute. Leave with an <em>agreement.</em></h2>
   <div class="pstrip">
     <div class="ps"><span class="ps-t">Today</span>You send your inquiry</div>
-    <div class="ps"><span class="ps-t">Within 48 hours</span>Invitation to the other side</div>
+    <div class="ps"><span class="ps-t">Within 48 hours</span>I reply personally; with your go-ahead, the other side is invited</div>
     <div class="ps"><span class="ps-t">5 business days</span>The Framework, in hand</div>
     <div class="ps"><span class="ps-t">2&ndash;3 weeks</span>Your session</div>
   </div>
@@ -613,6 +613,7 @@
     <div class="wiz-step" id="ws2" hidden>
       <p class="wiz-label">Step 2 of 4 &middot; The situation</p>
       <label>Briefly, what is the dispute?<textarea name="detail" rows="4" placeholder="A few sentences is plenty."></textarea></label>
+      <label>Who is the dispute with? <span style="text-transform:none;letter-spacing:0;color:var(--dim)">(optional &mdash; a name, and contact if you have it)</span><input name="other_party" placeholder="Nothing is sent to them without your go-ahead"></label>
       <label>Is the other party aware you are looking at mediation?
         <select name="aware">
           <option value="" disabled selected hidden>Select one&hellip;</option>
@@ -691,7 +692,7 @@
       var bars=document.getElementById('wizbar').children;
       for(var j=0;j<4;j++){bars[j].className=(j<n)?'on':''}
       inqf.scrollIntoView({behavior:'smooth',block:'start'});
-      if(n===4){var rows=[['Dispute',val('type')||'Not selected'],['At stake',val('amount')||'Not selected'],['Name',(val('first')+' '+val('last')).trim()],['Email',val('email')],['Phone',val('phone')||'Not provided']];
+      if(n===4){var rows=[['Dispute',val('type')||'Not selected'],['At stake',val('amount')||'Not selected'],['Dispute with',val('other_party')||'Not provided'],['Name',(val('first')+' '+val('last')).trim()],['Email',val('email')],['Phone',val('phone')||'Not provided']];
         document.getElementById('wizreview').innerHTML=rows.map(function(r){return '<div class="rrow"><span class="rk">'+r[0]+'</span><span class="rvv"></span></div>'}).join('');
         Array.prototype.forEach.call(document.querySelectorAll('#wizreview .rvv'),function(el,i){el.textContent=rows[i][1]});}
     }
@@ -713,7 +714,7 @@
       fd.append('_subject','Resolve Mediation - new inquiry');
       fd.append('source','resolvedispute.ca wizard');
       fd.append('dispute_type',val('type'));fd.append('amount',val('amount'));
-      fd.append('detail',val('detail'));fd.append('other_party_aware',val('aware'));
+      fd.append('detail',val('detail'));fd.append('other_party',val('other_party'));fd.append('other_party_aware',val('aware'));
       fd.append('name',(val('first')+' '+val('last')).trim());
       fd.append('email',val('email'));fd.append('phone',val('phone'));
       fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
