@@ -409,10 +409,26 @@
     <h2>Structured, written, and <em>done in weeks.</em></h2>
   </div>
   <div class="video-wrap">
-    <video controls playsinline preload="metadata" poster="why-mediation-poster.jpg" aria-label="Why this works, with Resolve">
-      <source src="why-mediation.mp4" type="video/mp4">
-    </video>
+    <video id="introvid" controls playsinline preload="none"
+           src="why-mediation.mp4" poster="why-mediation-poster.jpg"
+           data-msrc="why-mediation-vertical.mp4"
+           data-mposter="why-mediation-poster-vertical.jpg"
+           aria-label="Why this works, with Resolve"></video>
   </div>
+  <script>
+    /* Phones get the 1080x1920 cut. The 16:9 version is unreadable at
+       phone width because the type is baked in at desktop scale.
+       preload="none" means only the chosen file is ever fetched. */
+    (function(){
+      var v=document.getElementById('introvid');
+      if(!v||!window.matchMedia)return;
+      if(matchMedia('(max-width: 600px)').matches){
+        v.src=v.getAttribute('data-msrc');
+        v.poster=v.getAttribute('data-mposter');
+        v.parentNode.classList.add('is-vertical');
+      }
+    })();
+  </script>
   <div class="steps">
     <div class="step">
       <div class="num">1</div>
@@ -818,6 +834,8 @@
      micro-labels (eyebrows, step phases, table row labels) stay small
      on purpose, since enlarging them makes them shout. */
   @media(max-width:600px){
+    .video-wrap.is-vertical video{max-height:76vh;width:auto;margin:0 auto;display:block}
+    .video-wrap.is-vertical{background:#000}
     .rc .rd{font-size:16px;line-height:1.55}
     .ps{font-size:15.5px}
     .step p{font-size:17px;line-height:1.6}
