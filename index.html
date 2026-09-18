@@ -812,3 +812,22 @@
     });
   }
 </script>
+
+<style>
+  /* Phone readability pass. Lifts secondary PROSE only; the uppercase
+     micro-labels (eyebrows, step phases, table row labels) stay small
+     on purpose, since enlarging them makes them shout. */
+  @media(max-width:600px){
+    .rc .rd{font-size:16px;line-height:1.55}
+    .ps{font-size:15.5px}
+    .step p{font-size:17px;line-height:1.6}
+    .cred li,.line-note p,.pledge p{font-size:16.5px;line-height:1.6}
+    .fee .fd{font-size:15.5px;line-height:1.55}
+    .feecard .fd{font-size:15px;line-height:1.55}
+    .disc{font-size:14px;line-height:1.62}
+    .catgrid .cs{font-size:13.5px}
+    .inq label,.optgrid .opt{font-size:16px}
+    .inq button,.wiz-nav .back{font-size:16.5px}
+    .inq .consent{font-size:14.5px;line-height:1.5}
+  }
+</style>
