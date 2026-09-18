@@ -421,8 +421,12 @@
        preload="none" means only the chosen file is ever fetched. */
     (function(){
       var v=document.getElementById('introvid');
-      if(!v||!window.matchMedia)return;
-      if(matchMedia('(max-width: 600px)').matches){
+      if(!v)return;
+      /* Guard against a zero/unknown width (hidden tab, prerender): a
+         bare media query matches max-width at width 0 and would hand a
+         desktop visitor the vertical cut. */
+      var w=window.innerWidth||document.documentElement.clientWidth||0;
+      if(w>0&&w<=600){
         v.src=v.getAttribute('data-msrc');
         v.poster=v.getAttribute('data-mposter');
         v.parentNode.classList.add('is-vertical');
