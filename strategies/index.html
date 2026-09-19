@@ -1,0 +1,270 @@
+<!doctype html><html lang="en-CA"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How disputes get solved</title>
+<meta name="description" content="The strategies, tactics and questions applied in a Resolve mediation: how to prepare, why sensible people stay stuck, and the moves used in the room to get a property dispute settled.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#111316; --ground-2:#191C20; --panel:#22262C;
+    --bone:#ECECE8; --bone-2:#A7ABA5; --dim:#767A73;
+    --brass:#5FB09A; --line:rgba(236,236,232,.12); --line-2:rgba(236,236,232,.06);
+    --disp:'Hanken Grotesk',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:17px}
+  body{background:var(--ground);color:var(--bone);font-family:var(--disp);font-size:18px;line-height:1.62;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 32px}
+  a{color:inherit}
+  h1,h2,h3{font-weight:500;letter-spacing:-.025em;text-wrap:balance}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(17,19,22,.92);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line-2)}
+  nav .in{max-width:900px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
+  .mark{font-size:22px;font-weight:600;text-decoration:none}
+  .mark i{font-style:normal;color:var(--brass)}
+  .back{font-size:15px;color:var(--bone-2);text-decoration:none}
+  .back:hover{color:var(--brass)}
+
+  header{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+  header h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+  header p{color:var(--bone-2);font-size:17px;margin-top:18px;max-width:64ch}
+
+  .note{margin-top:26px;border-left:2px solid var(--brass);background:rgba(95,176,154,.06);
+        padding:18px 22px;border-radius:0 10px 10px 0;max-width:70ch}
+  .note p{font-size:15.5px;color:var(--bone-2);line-height:1.6}
+  .note p b{color:var(--bone);font-weight:600}
+  .note p + p{margin-top:10px}
+
+  .jump{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0}
+  .jump a{font-size:14.5px;text-decoration:none;border:1px solid var(--line);border-radius:100px;
+          padding:9px 18px;color:var(--bone-2)}
+  .jump a:hover{border-color:var(--brass);color:var(--bone)}
+
+  section.sec{padding:56px 0 8px}
+  .sec-h{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:8px}
+  .sec-h h2{font-size:clamp(24px,3.4vw,32px)}
+  .sec-h p{color:var(--dim);font-size:15.5px;margin-top:8px;max-width:66ch}
+
+  article{border-bottom:1px solid var(--line-2);padding:34px 0}
+  article:last-child{border-bottom:none}
+  .cname{font-size:20px;font-weight:600;line-height:1.3}
+  .cname em{font-style:italic}
+  .ccite{font-family:var(--mono);font-size:13px;color:var(--brass);margin-top:6px;display:block;
+         text-decoration:none}
+  .ccite:hover{text-decoration:underline}
+  .row{margin-top:18px}
+  .lab{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+       color:var(--dim);display:block;margin-bottom:5px}
+  .row p{font-size:16.5px;color:var(--bone-2);line-height:1.62}
+  .row.rule p{color:var(--bone);font-weight:500}
+  .row.why p{font-style:italic}
+
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:34px 0 70px}
+  footer p{font-size:13.5px;color:var(--dim);line-height:1.65;max-width:78ch}
+  footer p + p{margin-top:12px}
+  footer b{color:var(--bone-2)}
+
+  @media(max-width:600px){
+    .wrap{padding:0 22px} nav .in{padding:16px 22px}
+    body{font-size:17px}
+    .row p{font-size:16px}
+  }
+
+  .item{border-bottom:1px solid var(--line-2);padding:30px 0}
+  .item:last-child{border-bottom:none}
+  .iname{font-size:19px;font-weight:600;line-height:1.32}
+  .item p.what{font-size:16.5px;color:var(--bone-2);margin-top:12px}
+  .item .ask{margin-top:15px;border-left:2px solid var(--brass);padding:3px 0 3px 15px}
+  .item .ask span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+                  color:var(--dim);display:block;margin-bottom:4px}
+  .item .ask p{font-size:16.5px;color:var(--bone);font-style:italic}
+  .item .src{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:13px;display:block}
+  .qgrid{padding:8px 0 0}
+  .qblock{margin-top:28px}
+  .qblock h3{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+             color:var(--brass);font-weight:500;margin-bottom:12px}
+  .qblock ul{list-style:none}
+  .qblock li{position:relative;padding:11px 0 11px 26px;font-size:16.5px;color:var(--bone-2);
+             border-bottom:1px solid var(--line-2)}
+  .qblock li:last-child{border-bottom:none}
+  .qblock li:before{content:"";position:absolute;left:3px;top:21px;width:6px;height:6px;
+                    border-radius:50%;background:var(--brass);opacity:.75}
+  .closer{margin:48px 0 0;border:1px solid var(--line);border-radius:12px;padding:26px 28px}
+  .closer h3{font-size:19px;font-weight:600;margin-bottom:12px}
+  .closer p{font-size:16px;color:var(--bone-2)}
+  .closer p + p{margin-top:11px}
+  .cta{display:inline-block;margin-top:20px;background:var(--brass);color:#0E1512;font-weight:600;
+       font-size:16px;text-decoration:none;padding:14px 26px;border-radius:100px}
+</style>
+</head><body>
+
+<nav><div class="in">
+  <a class="mark" href="/">Resolve<i>.</i></a>
+  <a class="back" href="/">Back to Resolve</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">Strategies</div>
+  <h1>The things that actually move a dispute.</h1>
+  <p>Almost nobody is stuck because they do not know the law. They are stuck because of how the
+  problem has been framed, what each side assumes about the other, and what nobody has put on the
+  table yet. This is the method I use to change that, written out in full so you can see it before
+  you decide whether to use it.</p>
+
+  <div class="note">
+    <p><b>Use this whether or not you ever hire me.</b> None of it is secret and none of it is
+    complicated. If you read this page, apply it yourself, and settle your dispute at the kitchen
+    table without paying anyone, that is a good outcome and you should do that.</p>
+    <p>This is general information about a process. It is not advice about your situation, and it
+    is not legal advice.</p>
+  </div>
+
+  <div class="jump"><a href="#prepare">Before you sit down</a><a href="#traps">Why sensible people stay stuck</a><a href="#moves">What we do in the room</a><a href="#questions">Questions worth asking</a></div>
+</div></header>
+
+  <section class="sec" id="prepare"><div class="wrap">
+    <div class="sec-h"><h2>Before you sit down</h2><p>Five things worth settling in your own head first. They do more for the outcome than anything that happens on the day.</p></div>
+      <div class="item">
+        <div class="iname">Know what actually happens if nothing is agreed</div>
+        <p class="what">Most people measure a settlement against their best day in court. That is the wrong comparison. The one that matters is the <em>likely</em> outcome, net of what it costs to get there and how long it takes, and then net again of whether the other side can actually pay it.</p>
+<div class="ask"><span>The question</span><p>If we never agree, what happens to me, by when, and what is left in my hand after costs?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Separate what you are asking for from what you need</div>
+        <p class="what">A number is usually standing in for something else. Certainty. An exit. A date. Being taken seriously after months of being ignored. When the real need is named, there are often several ways to meet it, and only one of them was on the table.</p>
+<div class="ask"><span>The question</span><p>If I got the money but not the apology, would I take it? If I got the date but less money, would I take that?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Know what you can actually perform</div>
+        <p class="what">An agreement you cannot carry out is worse than no agreement, because you will be back here in six months having also spent the goodwill. This is the single most common reason settlements fail after they are signed.</p>
+<div class="ask"><span>The question</span><p>What can I do, by when, without needing anything else to go right first?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Put a number on staying stuck</div>
+        <p class="what">Being in a dispute has a monthly cost even when nothing is happening: carrying costs, interest, a property you cannot use or sell, professional fees, and the part of your attention it takes up. People rarely add it up, and it is often larger than the gap between the two positions.</p>
+<div class="ask"><span>The question</span><p>What is this costing me every month, and how many more months am I prepared to pay that?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Decide in advance what you will not trade</div>
+        <p class="what">Know your limit before you are in the room, not while someone is looking at you waiting for an answer. A limit you set calmly in advance is one you can hold without drama, and it makes everything above it genuinely negotiable.</p>
+<div class="ask"><span>The question</span><p>What is the one thing I will walk away over, and is it actually that, or is it pride?</p></div>
+      </div>
+  </div></section>
+  <section class="sec" id="traps"><div class="wrap">
+    <div class="sec-h"><h2>Why sensible people stay stuck</h2><p>None of these are stupidity. They are ordinary, they are well documented, and naming them is usually enough to loosen them.</p></div>
+      <div class="item">
+        <div class="iname">Assuming there is one pot to split</div>
+        <p class="what">The most destructive assumption people bring is that the resources are fixed, so any gain for the other side is a loss for you. Some disputes really are a single number. Most property disputes are not: they carry timing, possession, condition, repairs, chattels, who carries what until it sells, releases, and confidentiality. Each of those is something one side values more than the other, which is exactly what makes a trade possible.</p>
+<div class="ask"><span>The question</span><p>What is on this table that I care about less than they do, and what do they hold that I want more than they think?</p></div><span class="src">The &ldquo;mythical fixed pie,&rdquo; Program on Negotiation, Harvard Law School</span>
+      </div>
+      <div class="item">
+        <div class="iname">It is mine, so it is worth more</div>
+        <p class="what">People consistently value what they own above what anyone else will pay for it. This is measured and it is ordinary, not a character flaw. It is why two honest co-owners can look at the same house and be a hundred thousand dollars apart without either of them lying.</p>
+<div class="ask"><span>The question</span><p>Am I valuing this at what it is worth, or at what it would cost me to give it up?</p></div><span class="src">The endowment effect</span>
+      </div>
+      <div class="item">
+        <div class="iname">Being certain about what a court would do</div>
+        <p class="what">In most disputes both sides have been told they have a strong case, and both believe it. They cannot both be right. That gap between two confident predictions is usually the whole reason the matter is still open.</p>
+<div class="ask"><span>The question</span><p>What would have to be true for the other side to win, and how sure am I that it is not?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Confusing being right with being paid</div>
+        <p class="what">A decision in your favour is a finding that you are owed something. Turning that into money is a separate project with its own cost and timeline, and it only works if there is something on the other end to collect from.</p>
+<div class="ask"><span>The question</span><p>If I win, who writes the cheque, and out of what?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Spending because you have already spent</div>
+        <p class="what">Money and time already gone are gone whichever way this ends. They are a reason to want a good outcome. They are not a reason to buy more of the same process that produced them.</p>
+<div class="ask"><span>The question</span><p>If I were arriving at this today, with what I now know, would I start down this road?</p></div>
+      </div>
+      <div class="item">
+        <div class="iname">Discounting anything because of who proposed it</div>
+        <p class="what">The same terms are rated worse when they arrive from the other side than when they arrive from a neutral. It is one of the more reliable findings in the field, and it is a large part of why a third party in the room changes what is acceptable without changing what is offered.</p>
+<div class="ask"><span>The question</span><p>Would I take this if it had come from anyone else?</p></div>
+      </div>
+  </div></section>
+  <section class="sec" id="moves"><div class="wrap">
+    <div class="sec-h"><h2>What we do in the room</h2><p>The actual method, in the order it tends to happen.</p></div>
+      <div class="item">
+        <div class="iname">The same read, given to both of you</div>
+        <p class="what">Before the session, both sides receive one identical document setting out the situation as it looks from outside it: the money, the timing, what the market says, the costs of continuing, and the exposure on each side. Nobody gets a version written for them. It is the fastest way to end the state where each side is negotiating against a picture only they can see.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">Private sessions</div>
+        <p class="what">Each side also meets with me alone. This is where people say the thing they will not say across the table, including what they would actually accept. It stays with me. Nothing from your private session goes to the other side unless you tell me to take it there.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">Reality testing</div>
+        <p class="what">Not telling you that you are wrong, and not arguing with you. Asking the question your position depends on, and then sitting in the answer. <em>Your case turns on the court accepting X. What is your plan if it does not?</em> Done properly it is uncomfortable for about a minute and then it is useful, and I do it to both sides equally.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">Widening the table</div>
+        <p class="what">When a single number is stuck, the move is usually to add issues rather than to keep splitting the one. Closing date, possession, what stays in the house, repairs, who carries the property until it sells, who lists it, a release of everything else between you, and confidentiality. More issues means more ways to trade, and trades create value that splitting cannot.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">Pricing the disagreement instead of arguing it</div>
+        <p class="what">Two sides rarely agree on what something will be worth or what will happen next. You do not have to resolve that. You can agree today on what happens in either case: a payment that adjusts to the actual sale price, a holdback released on a condition, a formula with a floor. The disagreement stops being an obstacle and becomes a term.</p>
+<span class="src">The contingent contract, Program on Negotiation, Harvard Law School</span>
+      </div>
+      <div class="item">
+        <div class="iname">Brackets, when the numbers stall</div>
+        <p class="what">When two positions have stopped moving, a bracket restarts them: <em>I will come to X if they will come to Y.</em> Neither side concedes unilaterally, both signal a range they can live in, and the conversation moves from two fixed points to a zone.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">Structure before size</div>
+        <p class="what">A smaller amount that is secured, or staged, or paid next month, is frequently worth more than a larger amount backed by nothing. Someone who cannot write one cheque can often write six. This is where knowing the property and the market matters more than knowing the law.</p>
+
+      </div>
+      <div class="item">
+        <div class="iname">A proposal from me, only at the end</div>
+        <p class="what">If everything else is exhausted and the gap is small, I can put a single proposal to both sides. It is governed: I only do it if both of you agree in advance to receive it, you each answer me privately, there is no deal unless you both accept it, and neither of you is told what the other said. Nobody is exposed by saying yes to something the other side rejected.</p>
+<span class="src">Adapted from the &ldquo;No One Gets Hurt&rdquo; protocol, Mitchell Rose, ADR Institute of Canada</span>
+      </div>
+      <div class="item">
+        <div class="iname">Writing it down before anyone leaves</div>
+        <p class="what">Agreements reached and not recorded tend to come apart within the week, because each side remembers the version that favours them. Whatever is agreed is written the same day, in plain terms, and signed.</p>
+
+      </div>
+  </div></section>
+  <section class="sec" id="questions"><div class="wrap">
+    <div class="sec-h"><h2>Questions worth asking</h2><p>Take these with you whether or not you ever speak to me. They work in any negotiation.</p></div>
+    <div class="qgrid">
+    <div class="qblock"><h3>Ask yourself</h3><ul><li>What do I actually need out of this, as distinct from what I have been asking for?</li><li>What happens to me if there is no agreement at all, realistically, and when?</li><li>What is this costing me every month while it is unresolved?</li><li>What can I genuinely deliver, and by when?</li><li>What would have to be true for the other side to be right?</li><li>What is the smallest version of this I could accept and still feel finished?</li></ul></div>
+    <div class="qblock"><h3>Ask the other side</h3><ul><li>What does this need to look like for you to be able to sign it?</li><li>Which part of this matters most to you, and which part could move?</li><li>What can you actually perform, as opposed to what you would like to offer?</li><li>What are you worried about that we have not talked about?</li><li>If the money were right, what else would still be unresolved between us?</li></ul></div>
+    <div class="qblock"><h3>Ask about any proposed deal</h3><ul><li>Can both sides actually do this, without anything else having to go right?</li><li>What happens if one of us does not perform, and what backs it up?</li><li>Does this close everything between us, or does it leave something alive?</li><li>Is there anything here that only works if a number lands a certain way, and have we said what happens if it does not?</li></ul></div>
+    </div>
+
+    <div class="closer">
+      <h3>What I do not do</h3>
+      <p>I do not decide anything, and I do not take a side. I do not act for either of you, and I give no legal advice to anyone. I do not push a settlement because it would be tidy, and you are free to end the process at any point.</p>
+      <p>I also never take the listing, the sale, or any brokerage work arising out of a dispute I mediate. That is a rule, not a preference, and you can hold me to it.</p>
+      <a class="cta" href="/#inquire">Start a confidential inquiry &rarr;</a>
+    </div>
+  </div></section>
+
+<footer><div class="wrap">
+  <p><b>Resolve Mediation provides impartial dispute resolution, not legal advice.</b> The mediator
+  is neutral, acts for neither party, expresses views on the matters at issue rather than advice to
+  a party, and recommends that each party obtain independent legal advice. Decision-making authority
+  rests with the parties at all times.</p>
+  <p>Some of the ideas named on this page come from the negotiation literature and are credited
+  where they are named. Where a concept is attributed to the Program on Negotiation at Harvard Law
+  School or to the ADR Institute of Canada, the wording here is my own and the attribution is to the
+  idea, not to any published text.</p>
+  <p>Resolve Mediation &middot; Taran Aujla &mdash; former business &amp; real estate lawyer;
+  Salesperson, HomeLife G1 Realty Inc., Brokerage &middot; Ontario</p>
+</div></footer>
+
+</body></html>
