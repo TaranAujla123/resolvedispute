@@ -1,0 +1,282 @@
+<!doctype html><html lang="en-CA"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You have been invited to resolve something</title>
+<meta name="description" content="Someone has asked a neutral mediator to help resolve a dispute involving you. What that means, what it does not mean, what it costs, and what happens if you say no.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#111316; --panel:#181B1F; --panel-2:#1F2328;
+    --bone:#ECECE8; --bone-2:#A7ABA5; --dim:#767A73;
+    --brass:#5FB09A; --clay:#C4906A;
+    --line:rgba(236,236,232,.12); --line-2:rgba(236,236,232,.06);
+    --disp:'Hanken Grotesk',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--ground);color:var(--bone);font-family:var(--disp);font-size:17px;
+       line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+  a{color:inherit}
+  h1,h2,h3{font-weight:500;letter-spacing:-.025em;text-wrap:balance}
+  em{font-style:italic}
+
+  /* ---- chrome ---- */
+  nav{position:sticky;top:0;z-index:20;background:rgba(17,19,22,.94);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line-2)}
+  nav .in{max-width:1060px;margin:0 auto;padding:16px 32px;display:flex;
+          justify-content:space-between;align-items:center}
+  .mark{font-size:21px;font-weight:600;text-decoration:none}
+  .mark i{font-style:normal;color:var(--brass)}
+  .back{font-size:14.5px;color:var(--bone-2);text-decoration:none}
+  .back:hover{color:var(--brass)}
+
+  /* ---- hero ---- */
+  header{padding:72px 0 40px}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.16em;
+           text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+  header h1{font-size:clamp(32px,5.2vw,50px);line-height:1.08;max-width:17ch}
+  header .lede{color:var(--bone-2);font-size:18px;margin-top:20px;max-width:62ch}
+
+  .note{margin-top:30px;border-left:2px solid var(--brass);background:rgba(95,176,154,.055);
+        padding:20px 24px;border-radius:0 10px 10px 0;max-width:66ch}
+  .note p{font-size:15.5px;color:var(--bone-2);line-height:1.6}
+  .note p b{color:var(--bone);font-weight:600}
+  .note p + p{margin-top:10px}
+
+  /* ---- sticky section bar ---- */
+  .jumpbar{position:sticky;top:57px;z-index:15;background:rgba(17,19,22,.94);
+           backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);margin-top:8px}
+  .jumpbar .in{max-width:1060px;margin:0 auto;padding:12px 32px;display:flex;gap:8px;
+               overflow-x:auto;scrollbar-width:none}
+  .jumpbar .in::-webkit-scrollbar{display:none}
+  .jumpbar a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;
+             white-space:nowrap;border:1px solid var(--line);border-radius:100px;
+             padding:8px 15px;color:var(--bone-2);transition:.18s}
+  .jumpbar a:hover{border-color:var(--brass);color:var(--bone)}
+  .jumpbar a b{color:var(--dim);font-weight:400;margin-left:8px;font-size:11px}
+
+  /* ---- sections ---- */
+  section.sec{padding:66px 0 10px;scroll-margin-top:112px}
+  .sec-h{margin-bottom:34px}
+  .sec-h .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+                 text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+  .sec-h .kicker span{color:var(--brass)}
+  .sec-h.warn .kicker span{color:var(--clay)}
+  .sec-h h2{font-size:clamp(26px,3.6vw,36px);line-height:1.15}
+  .sec-h p{color:var(--bone-2);font-size:16.5px;margin-top:12px;max-width:64ch}
+
+  /* ---- card grid ---- */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;
+        padding:26px 26px 24px;display:flex;flex-direction:column;transition:border-color .2s}
+  .card:hover{border-color:rgba(95,176,154,.35)}
+  .grid.warn .card:hover{border-color:rgba(196,144,106,.35)}
+  .num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--brass);
+       margin-bottom:13px;display:flex;align-items:center;gap:9px}
+  .num:after{content:"";height:1px;flex:1;background:var(--line-2)}
+  .warn .num{color:var(--clay)}
+  .card h3{font-size:18.5px;font-weight:600;line-height:1.32;letter-spacing:-.015em}
+  .card .what{font-size:15.5px;color:var(--bone-2);margin-top:11px;line-height:1.6}
+  .ask{padding-top:17px}
+  .ask .in{border-left:2px solid var(--brass);background:rgba(95,176,154,.05);
+           border-radius:0 8px 8px 0;padding:13px 15px}
+  .warn .ask .in{border-left-color:var(--clay);background:rgba(196,144,106,.05)}
+  .ask .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+            color:var(--dim);display:block;margin-bottom:5px}
+  .ask p{font-size:15.5px;color:var(--bone);font-style:italic;line-height:1.5}
+  .src{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:14px;
+       padding-top:12px;border-top:1px solid var(--line-2)}
+
+  /* ---- collapse long prose on phones (no JS: a checkbox drives it) ---- */
+  .exp{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  .more{display:none}
+  @media(max-width:600px){
+    .clamp .exp:not(:checked) ~ .what{display:-webkit-box;-webkit-line-clamp:4;
+      -webkit-box-orient:vertical;overflow:hidden}
+    .clamp .more{display:inline-block;align-self:flex-start;margin-top:11px;
+      font-family:var(--mono);font-size:11px;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--brass);cursor:pointer;
+      border-bottom:1px solid rgba(95,176,154,.4);padding-bottom:2px;
+      -webkit-tap-highlight-color:transparent}
+    .warn .clamp .more{color:var(--clay);border-bottom-color:rgba(196,144,106,.4)}
+    .clamp .exp:not(:checked) ~ .more .b{display:none}
+    .clamp .exp:checked ~ .more .a{display:none}
+    .clamp .exp:focus-visible ~ .more{outline:2px solid var(--brass);outline-offset:3px;
+      border-radius:2px}
+  }
+
+  /* ---- timeline (a sequence, so it is drawn as one) ---- */
+  .tl{position:relative}
+  .tl:before{content:"";position:absolute;left:21px;top:20px;bottom:26px;width:1px;
+             background:linear-gradient(180deg,var(--brass),rgba(95,176,154,.15))}
+  .step{position:relative;padding:0 0 26px 66px}
+  .step:last-child{padding-bottom:0}
+  .dot{position:absolute;left:0;top:0;width:43px;height:43px;border-radius:50%;
+       background:var(--panel-2);border:1px solid rgba(95,176,154,.45);display:flex;
+       align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;
+       color:var(--brass);z-index:1}
+  .step .body{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;
+              padding:22px 25px;transition:border-color .2s}
+  .step:hover .body{border-color:rgba(95,176,154,.3)}
+  .step h3{font-size:18.5px;font-weight:600;letter-spacing:-.015em}
+  .step .what{font-size:15.5px;color:var(--bone-2);margin-top:9px;line-height:1.6}
+
+  /* ---- questions ---- */
+  .qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+  .qcol{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;padding:24px 24px 10px}
+  .qcol h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;
+           color:var(--brass);font-weight:500;margin-bottom:6px}
+  .qcol ul{list-style:none}
+  .qcol li{position:relative;padding:14px 0 14px 21px;font-size:15.5px;color:var(--bone-2);
+           border-bottom:1px solid var(--line-2);line-height:1.52}
+  .qcol li:last-child{border-bottom:none}
+  .qcol li:before{content:"";position:absolute;left:1px;top:22px;width:6px;height:6px;
+                  border-radius:50%;background:var(--brass);opacity:.65}
+
+  /* ---- closer ---- */
+  .closer{margin:54px 0 0;border:1px solid var(--line);border-radius:16px;padding:32px 34px;
+          background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+  .closer h3{font-size:21px;font-weight:600;margin-bottom:14px}
+  .closer p{font-size:16px;color:var(--bone-2);max-width:72ch}
+  .closer p + p{margin-top:12px}
+  .cta{display:inline-block;margin-top:24px;background:var(--brass);color:#0E1512;font-weight:600;
+       font-size:16px;text-decoration:none;padding:15px 28px;border-radius:100px;transition:.2s}
+  .cta:hover{filter:brightness(1.08)}
+
+  footer{border-top:1px solid var(--line);margin-top:66px;padding:36px 0 76px}
+  footer p{font-size:13.5px;color:var(--dim);line-height:1.65;max-width:80ch}
+  footer p + p{margin-top:12px}
+  footer b{color:var(--bone-2)}
+
+  @media(max-width:880px){
+    .grid,.qgrid{grid-template-columns:1fr}
+    .jumpbar{top:55px}
+  }
+  @media(max-width:600px){
+    body{font-size:16.5px}
+    .wrap{padding:0 20px}
+    nav .in,.jumpbar .in{padding-left:20px;padding-right:20px}
+    header{padding:48px 0 32px}
+    section.sec{padding:48px 0 6px;scroll-margin-top:104px}
+    .card{padding:22px 20px 20px}
+    .step{padding-left:52px}
+    .dot{width:36px;height:36px;font-size:12px}
+    .tl:before{left:18px}
+    .closer{padding:26px 22px}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+  header h1{max-width:20ch}
+  .qa{border-top:1px solid var(--line);margin-top:8px}
+  .qa .row{border-bottom:1px solid var(--line-2);padding:26px 0;display:grid;
+           grid-template-columns:minmax(0,7fr) minmax(0,11fr);gap:32px;align-items:start}
+  .qa .row:last-child{border-bottom:none}
+  .qa h3{font-size:18.5px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+  .qa p{font-size:16px;color:var(--bone-2)}
+  .qa p + p{margin-top:11px}
+  .qa p b{color:var(--bone);font-weight:600}
+  .flat{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;
+        padding:26px 28px;margin-top:30px}
+  .flat h3{font-size:18px;font-weight:600;margin-bottom:12px}
+  .flat p{font-size:16px;color:var(--bone-2)}
+  .flat p + p{margin-top:10px}
+  .next{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .nb{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;padding:24px}
+  .nb .n{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--brass);
+         display:block;margin-bottom:10px}
+  .nb h3{font-size:17px;font-weight:600;margin-bottom:8px}
+  .nb p{font-size:15px;color:var(--bone-2)}
+  .callbox{margin-top:34px;border:1px solid var(--line);border-radius:16px;padding:30px 32px;
+           background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+  .callbox h3{font-size:20px;font-weight:600;margin-bottom:12px}
+  .callbox p{font-size:16px;color:var(--bone-2);max-width:66ch}
+  .callbox .tel{display:inline-block;margin-top:18px;font-size:22px;font-weight:600;
+                color:var(--brass);text-decoration:none}
+  .callbox .tel small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+                      text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+  @media(max-width:880px){
+    .qa .row{grid-template-columns:1fr;gap:10px}
+    .next{grid-template-columns:1fr}
+  }
+</style>
+</head><body>
+
+<nav><div class="in">
+  <a class="mark" href="/">Resolve<i>.</i></a>
+  <a class="back" href="/">About Resolve</a>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">If you were given this link</div>
+  <h1>Someone would rather sort this out than fight about it.</h1>
+  <p class="lede">You have been pointed here because the other side of a disagreement involving
+  you has asked whether it can be resolved directly, with a neutral in the room, instead of
+  through a court. This page explains what that is, what it is not, and what happens if you would
+  rather not.</p>
+
+  <div class="note">
+    <p><b>Read this before you decide anything.</b> You are not required to do anything, you are
+    not agreeing to anything by reading it, and nothing here is a claim against you.</p>
+  </div>
+</div></header>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-h">
+    <div class="kicker"><span>The questions</span> &middot; most people ask these in this order</div>
+    <h2>Straight answers</h2>
+  </div>
+  <div class="qa">
+    <div class="row"><h3>Who are you, and who do you act for?</h3><div><p>My name is Taran Aujla. I am a mediator. <b>I act for neither side.</b> I have not been hired to represent the person who contacted me, I am not their lawyer, and I am not going to argue their case to you.</p><p>A mediator is a neutral. My job is to see whether there is an agreement available that both of you would rather have than the alternative. If there is not, I will say so.</p></div></div>
+    <div class="row"><h3>Does this mean I am being sued?</h3><div><p>No. This is the opposite of that. Someone on the other side of a disagreement with you has asked whether it can be worked out directly instead of through a court.</p><p>Nothing has been filed because of this invitation, and nothing is filed by you replying to it.</p></div></div>
+    <div class="row"><h3>What would I actually be agreeing to?</h3><div><p>At this stage, a conversation. Nothing more.</p><p>If you both decide to go ahead, there is a written agreement to mediate that sets out how the process runs before anything else happens. <b>Nothing is binding on you unless you sign it.</b> I do not decide anything, I cannot impose an outcome, and you can stop at any point.</p></div></div>
+    <div class="row"><h3>What does it cost, and who pays?</h3><div><p>A fixed fee, agreed in writing before anything begins, normally split between the two sides. You will know the number before you commit to anything.</p><p>Compare that to what each side spends on a contested matter, and the arithmetic is usually the least difficult part of this decision.</p></div></div>
+    <div class="row"><h3>Is this confidential?</h3><div><p>Largely, and I would rather be precise than reassuring. What is said in a mediation is treated as without-prejudice settlement discussion, so it is not evidence against you on the merits if the matter later goes to court.</p><p>Three things can still surface. A judge fixing costs at the end of a case may consider written offers and how a party conducted itself. A settlement you sign is a binding contract and can be enforced. And a lawyer&rsquo;s conduct remains subject to their own professional rules. The written agreement to mediate can narrow the first of those, and I raise it with both sides before we start.</p></div></div>
+    <div class="row"><h3>Should I get my own lawyer?</h3><div><p>I recommend that each side get independent legal advice, and I say that to both of you equally. I am neutral, which means there is nobody in the room whose job is to tell you what a deal is worth to <em>you</em>.</p><p>You are not required to have one. Plenty of people mediate without. If you do have a lawyer, keep them and bring them in.</p></div></div>
+    <div class="row"><h3>What if I just say no?</h3><div><p>Then nothing happens, and I will not contact you again about it.</p><p>Saying no is not an admission of anything and it does not put you at a disadvantage. The other side&rsquo;s options are exactly what they were before I got in touch. You are also free to say not yet, or to ask me questions first without committing to anything.</p></div></div>
+  </div>
+
+  <div class="flat">
+    <h3>Why the invitation came from me and not from them</h3>
+    <p>Because an offer to talk lands differently depending on who makes it. The same suggestion
+    from the other side of a dispute often reads as a tactic. From someone who is not on either
+    side, it is easier to consider on its merits.</p>
+    <p>That is the only reason. Nobody is managing you.</p>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-h">
+    <div class="kicker"><span>If you are open to it</span> &middot; three steps, and you can stop at any of them</div>
+    <h2>What happens next</h2>
+  </div>
+  <div class="next">
+    <div class="nb"><span class="n">01</span><h3>You ask me anything</h3><p>A short call, no charge and no obligation. Most people want to know who I am and why I am involved before anything else. That is a reasonable place to start.</p></div>
+    <div class="nb"><span class="n">02</span><h3>You decide</h3><p>If it is not for you, say so and that is the end of it. If it is, both sides sign the agreement to mediate and I set out the process in writing.</p></div>
+    <div class="nb"><span class="n">03</span><h3>One focused session</h3><p>Online, usually within a few weeks. If it resolves, it is written up and signed the same day. If it does not, nothing you said is held against you.</p></div>
+  </div>
+
+  <div class="callbox">
+    <h3>Ask me anything first</h3>
+    <p>You do not have to commit to a process to ask a question about it. Call or text, or send me
+    a note through the site, and I will tell you plainly whether I think this is worth your time.
+    If it is not, I will say that too.</p>
+    <a class="tel" href="tel:+13656457332"><small>Call or text</small>(365) 645-7332</a>
+    <p style="margin-top:20px"><a class="cta" href="/#inquire">Send a note instead &rarr;</a></p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Resolve Mediation provides impartial dispute resolution, not legal advice.</b> The mediator
+  is neutral, acts for neither party, expresses views on the matters at issue rather than advice to
+  a party, and recommends that each party obtain independent legal advice. Decision-making
+  authority rests with the parties at all times. Nothing on this page is a demand, a claim, or a
+  notice of any proceeding, and reading it creates no obligation and no professional relationship.</p>
+  <p>Resolve Mediation &middot; Taran Aujla &mdash; former business &amp; real estate lawyer;
+  Salesperson, HomeLife G1 Realty Inc., Brokerage &middot; Ontario</p>
+</div></footer>
+
+</body></html>
