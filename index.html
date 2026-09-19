@@ -123,7 +123,7 @@
   .adv .note{margin-top:26px;color:var(--bone-2);max-width:56ch;font-size:1.08rem}
 
   /* what we resolve */
-  .rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);margin-top:8px}
+  .rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-2);border:1px solid var(--line-2);margin-top:8px}
   .rc{background:var(--ground);padding:30px 26px 32px;transition:background .3s}
   .rc:hover{background:var(--ground-2)}
   .resolve-more{margin-top:30px;color:var(--bone-2);font-size:1.06rem;line-height:1.62;max-width:66ch}
@@ -300,10 +300,10 @@
   <div class="hero-img" aria-hidden="true"></div>
   <div class="wrap">
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="eyebrow">Private Dispute Resolution &middot; Real Estate &middot; Business &middot; Family</div>
+  <div class="eyebrow">Private Dispute Resolution &middot; Real Estate &middot; Business</div>
   <h1>The goal isn&rsquo;t to win the argument. It&rsquo;s to <em>solve the problem.</em></h1>
   <div class="rule" aria-hidden="true"></div>
-  <p class="lede">Resolve Mediation helps people work through real estate, business, and family disputes &mdash; looking beyond the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next.</p>
+  <p class="lede">Resolve Mediation helps people work through real estate and business disputes &mdash; looking beyond the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next.</p>
   <ul class="benefits" aria-label="How this is different">
     <li>In weeks, not years</li>
     <li>One fixed fee</li>
@@ -396,10 +396,9 @@
     <div class="eyebrow">What we resolve</div>
     <h2>The disputes that settle sooner, and <em>cost less.</em></h2>
   </div>
-  <div class="rgrid three">
-    <div class="rc"><div class="rt">Real Estate</div><div class="rd">Failed closings and deposits, co-ownership and partition, assignments, estate property, and commercial leases &mdash; the deal, and what it&rsquo;s really worth.</div></div>
-    <div class="rc"><div class="rt">Business</div><div class="rd">Partnerships and shareholders, contracts and vendors, business break-ups and negotiated exits &mdash; where two sides still have to decide how it ends.</div></div>
-    <div class="rc"><div class="rt">Family</div><div class="rd">Family businesses, siblings and inheritances, estates, shared assets, and intergenerational disputes &mdash; where the relationship matters as much as the money.</div></div>
+  <div class="rgrid two">
+    <div class="rc"><div class="rt">Real Estate</div><div class="rd">Failed closings and deposits, co-ownership and partition, assignments, estate property and inheritances, and commercial leases &mdash; the deal, and what it&rsquo;s really worth.</div></div>
+    <div class="rc"><div class="rt">Business</div><div class="rd">Partnerships and shareholders, family businesses, contracts and vendors, business break-ups and negotiated exits &mdash; where two sides still have to decide how it ends.</div></div>
   </div>
   <p class="resolve-more"><span class="rm-label">The bigger picture</span>In every one of these, the legal question is only part of it. Money, timing, control, pride, relationships, and what happens tomorrow matter just as much &mdash; and the workable deal is almost always built out of those, not out of who was right.</p>
   <p class="fee-note" style="margin-top:26px">Some matters belong elsewhere &mdash; separation, divorce, and parenting (accredited family mediation), residential tenancies (LTB), and construction liens (Construction Act). If yours is one of them, I&rsquo;ll tell you plainly.</p>
@@ -651,7 +650,6 @@
       <div class="catgrid" id="catgrid">
         <button type="button" class="cat" data-cat="re"><span class="ct">Real estate</span><span class="cs">Closings, co-ownership, assignments</span></button>
         <button type="button" class="cat" data-cat="bus"><span class="ct">Business</span><span class="cs">Partners, contracts, vendors, exits</span></button>
-        <button type="button" class="cat" data-cat="fam"><span class="ct">Family &amp; estate</span><span class="cs">Siblings, inheritances, shared assets</span></button>
         <button type="button" class="cat" data-cat="oth"><span class="ct">Something else</span><span class="cs">Describe it on the next step</span></button>
       </div>
 
@@ -662,16 +660,14 @@
         <label data-cat="re" hidden><input type="radio" name="type" value="Co-ownership / partition"><span class="opt">Co-ownership / partition</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Assignment dispute"><span class="opt">Assignment dispute</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Estate property"><span class="opt">Estate property</span></label>
+        <label data-cat="re" hidden><input type="radio" name="type" value="Siblings / inheritance over property"><span class="opt">Siblings / inheritance over property</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Post-closing / disclosure"><span class="opt">Post-closing / disclosure</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Commercial lease"><span class="opt">Commercial lease</span></label>
         <label data-cat="bus" hidden><input type="radio" name="type" value="Partnership / shareholder"><span class="opt">Partnership / shareholder</span></label>
         <label data-cat="bus" hidden><input type="radio" name="type" value="Commercial contract"><span class="opt">Commercial contract</span></label>
         <label data-cat="bus" hidden><input type="radio" name="type" value="Vendor or supplier"><span class="opt">Vendor or supplier</span></label>
         <label data-cat="bus" hidden><input type="radio" name="type" value="Business break-up or exit"><span class="opt">Business break-up or exit</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Family business"><span class="opt">Family business</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Siblings / inheritance"><span class="opt">Siblings / inheritance</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Shared assets"><span class="opt">Shared assets</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Intergenerational"><span class="opt">Intergenerational</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="Family business"><span class="opt">Family business</span></label>
         <label data-cat="oth" hidden><input type="radio" name="type" value="Something else"><span class="opt">Something else</span></label>
         </div>
       </div>
