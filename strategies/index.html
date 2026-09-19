@@ -9,99 +9,148 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root{
-    --ground:#111316; --ground-2:#191C20; --panel:#22262C;
+    --ground:#111316; --panel:#181B1F; --panel-2:#1F2328;
     --bone:#ECECE8; --bone-2:#A7ABA5; --dim:#767A73;
-    --brass:#5FB09A; --line:rgba(236,236,232,.12); --line-2:rgba(236,236,232,.06);
+    --brass:#5FB09A; --clay:#C4906A;
+    --line:rgba(236,236,232,.12); --line-2:rgba(236,236,232,.06);
     --disp:'Hanken Grotesk',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:17px}
-  body{background:var(--ground);color:var(--bone);font-family:var(--disp);font-size:18px;line-height:1.62;
-       -webkit-font-smoothing:antialiased}
-  .wrap{max-width:900px;margin:0 auto;padding:0 32px}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--ground);color:var(--bone);font-family:var(--disp);font-size:17px;
+       line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px}
   a{color:inherit}
   h1,h2,h3{font-weight:500;letter-spacing:-.025em;text-wrap:balance}
+  em{font-style:italic}
 
-  nav{position:sticky;top:0;z-index:10;background:rgba(17,19,22,.92);backdrop-filter:blur(8px);
+  /* ---- chrome ---- */
+  nav{position:sticky;top:0;z-index:20;background:rgba(17,19,22,.94);backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line-2)}
-  nav .in{max-width:900px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;align-items:center}
-  .mark{font-size:22px;font-weight:600;text-decoration:none}
+  nav .in{max-width:1060px;margin:0 auto;padding:16px 32px;display:flex;
+          justify-content:space-between;align-items:center}
+  .mark{font-size:21px;font-weight:600;text-decoration:none}
   .mark i{font-style:normal;color:var(--brass)}
-  .back{font-size:15px;color:var(--bone-2);text-decoration:none}
+  .back{font-size:14.5px;color:var(--bone-2);text-decoration:none}
   .back:hover{color:var(--brass)}
 
-  header{padding:64px 0 40px;border-bottom:1px solid var(--line)}
-  .eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.14em;
-           text-transform:uppercase;color:var(--brass);margin-bottom:14px}
-  header h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
-  header p{color:var(--bone-2);font-size:17px;margin-top:18px;max-width:64ch}
+  /* ---- hero ---- */
+  header{padding:72px 0 40px}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.16em;
+           text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+  header h1{font-size:clamp(32px,5.2vw,50px);line-height:1.08;max-width:17ch}
+  header .lede{color:var(--bone-2);font-size:18px;margin-top:20px;max-width:62ch}
 
-  .note{margin-top:26px;border-left:2px solid var(--brass);background:rgba(95,176,154,.06);
-        padding:18px 22px;border-radius:0 10px 10px 0;max-width:70ch}
+  .note{margin-top:30px;border-left:2px solid var(--brass);background:rgba(95,176,154,.055);
+        padding:20px 24px;border-radius:0 10px 10px 0;max-width:66ch}
   .note p{font-size:15.5px;color:var(--bone-2);line-height:1.6}
   .note p b{color:var(--bone);font-weight:600}
   .note p + p{margin-top:10px}
 
-  .jump{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0}
-  .jump a{font-size:14.5px;text-decoration:none;border:1px solid var(--line);border-radius:100px;
-          padding:9px 18px;color:var(--bone-2)}
-  .jump a:hover{border-color:var(--brass);color:var(--bone)}
+  /* ---- sticky section bar ---- */
+  .jumpbar{position:sticky;top:57px;z-index:15;background:rgba(17,19,22,.94);
+           backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2);margin-top:8px}
+  .jumpbar .in{max-width:1060px;margin:0 auto;padding:12px 32px;display:flex;gap:8px;
+               overflow-x:auto;scrollbar-width:none}
+  .jumpbar .in::-webkit-scrollbar{display:none}
+  .jumpbar a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;
+             white-space:nowrap;border:1px solid var(--line);border-radius:100px;
+             padding:8px 15px;color:var(--bone-2);transition:.18s}
+  .jumpbar a:hover{border-color:var(--brass);color:var(--bone)}
+  .jumpbar a b{color:var(--dim);font-weight:400;margin-left:8px;font-size:11px}
 
-  section.sec{padding:56px 0 8px}
-  .sec-h{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:8px}
-  .sec-h h2{font-size:clamp(24px,3.4vw,32px)}
-  .sec-h p{color:var(--dim);font-size:15.5px;margin-top:8px;max-width:66ch}
+  /* ---- sections ---- */
+  section.sec{padding:66px 0 10px;scroll-margin-top:112px}
+  .sec-h{margin-bottom:34px}
+  .sec-h .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+                 text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+  .sec-h .kicker span{color:var(--brass)}
+  .sec-h.warn .kicker span{color:var(--clay)}
+  .sec-h h2{font-size:clamp(26px,3.6vw,36px);line-height:1.15}
+  .sec-h p{color:var(--bone-2);font-size:16.5px;margin-top:12px;max-width:64ch}
 
-  article{border-bottom:1px solid var(--line-2);padding:34px 0}
-  article:last-child{border-bottom:none}
-  .cname{font-size:20px;font-weight:600;line-height:1.3}
-  .cname em{font-style:italic}
-  .ccite{font-family:var(--mono);font-size:13px;color:var(--brass);margin-top:6px;display:block;
-         text-decoration:none}
-  .ccite:hover{text-decoration:underline}
-  .row{margin-top:18px}
-  .lab{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
-       color:var(--dim);display:block;margin-bottom:5px}
-  .row p{font-size:16.5px;color:var(--bone-2);line-height:1.62}
-  .row.rule p{color:var(--bone);font-weight:500}
-  .row.why p{font-style:italic}
+  /* ---- card grid ---- */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;
+        padding:26px 26px 24px;display:flex;flex-direction:column;transition:border-color .2s}
+  .card:hover{border-color:rgba(95,176,154,.35)}
+  .grid.warn .card:hover{border-color:rgba(196,144,106,.35)}
+  .num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--brass);
+       margin-bottom:13px;display:flex;align-items:center;gap:9px}
+  .num:after{content:"";height:1px;flex:1;background:var(--line-2)}
+  .warn .num{color:var(--clay)}
+  .card h3{font-size:18.5px;font-weight:600;line-height:1.32;letter-spacing:-.015em}
+  .card .what{font-size:15.5px;color:var(--bone-2);margin-top:11px;line-height:1.6}
+  .ask{padding-top:17px}
+  .ask .in{border-left:2px solid var(--brass);background:rgba(95,176,154,.05);
+           border-radius:0 8px 8px 0;padding:13px 15px}
+  .warn .ask .in{border-left-color:var(--clay);background:rgba(196,144,106,.05)}
+  .ask .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+            color:var(--dim);display:block;margin-bottom:5px}
+  .ask p{font-size:15.5px;color:var(--bone);font-style:italic;line-height:1.5}
+  .src{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:14px;
+       padding-top:12px;border-top:1px solid var(--line-2)}
 
-  footer{border-top:1px solid var(--line);margin-top:56px;padding:34px 0 70px}
-  footer p{font-size:13.5px;color:var(--dim);line-height:1.65;max-width:78ch}
+  /* ---- timeline (a sequence, so it is drawn as one) ---- */
+  .tl{position:relative}
+  .tl:before{content:"";position:absolute;left:21px;top:20px;bottom:26px;width:1px;
+             background:linear-gradient(180deg,var(--brass),rgba(95,176,154,.15))}
+  .step{position:relative;padding:0 0 26px 66px}
+  .step:last-child{padding-bottom:0}
+  .dot{position:absolute;left:0;top:0;width:43px;height:43px;border-radius:50%;
+       background:var(--panel-2);border:1px solid rgba(95,176,154,.45);display:flex;
+       align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;
+       color:var(--brass);z-index:1}
+  .step .body{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;
+              padding:22px 25px;transition:border-color .2s}
+  .step:hover .body{border-color:rgba(95,176,154,.3)}
+  .step h3{font-size:18.5px;font-weight:600;letter-spacing:-.015em}
+  .step .what{font-size:15.5px;color:var(--bone-2);margin-top:9px;line-height:1.6}
+
+  /* ---- questions ---- */
+  .qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+  .qcol{background:var(--panel);border:1px solid var(--line-2);border-radius:14px;padding:24px 24px 10px}
+  .qcol h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;
+           color:var(--brass);font-weight:500;margin-bottom:6px}
+  .qcol ul{list-style:none}
+  .qcol li{position:relative;padding:14px 0 14px 21px;font-size:15.5px;color:var(--bone-2);
+           border-bottom:1px solid var(--line-2);line-height:1.52}
+  .qcol li:last-child{border-bottom:none}
+  .qcol li:before{content:"";position:absolute;left:1px;top:22px;width:6px;height:6px;
+                  border-radius:50%;background:var(--brass);opacity:.65}
+
+  /* ---- closer ---- */
+  .closer{margin:54px 0 0;border:1px solid var(--line);border-radius:16px;padding:32px 34px;
+          background:linear-gradient(160deg,var(--panel-2),var(--panel))}
+  .closer h3{font-size:21px;font-weight:600;margin-bottom:14px}
+  .closer p{font-size:16px;color:var(--bone-2);max-width:72ch}
+  .closer p + p{margin-top:12px}
+  .cta{display:inline-block;margin-top:24px;background:var(--brass);color:#0E1512;font-weight:600;
+       font-size:16px;text-decoration:none;padding:15px 28px;border-radius:100px;transition:.2s}
+  .cta:hover{filter:brightness(1.08)}
+
+  footer{border-top:1px solid var(--line);margin-top:66px;padding:36px 0 76px}
+  footer p{font-size:13.5px;color:var(--dim);line-height:1.65;max-width:80ch}
   footer p + p{margin-top:12px}
   footer b{color:var(--bone-2)}
 
-  @media(max-width:600px){
-    .wrap{padding:0 22px} nav .in{padding:16px 22px}
-    body{font-size:17px}
-    .row p{font-size:16px}
+  @media(max-width:880px){
+    .grid,.qgrid{grid-template-columns:1fr}
+    .jumpbar{top:55px}
   }
-
-  .item{border-bottom:1px solid var(--line-2);padding:30px 0}
-  .item:last-child{border-bottom:none}
-  .iname{font-size:19px;font-weight:600;line-height:1.32}
-  .item p.what{font-size:16.5px;color:var(--bone-2);margin-top:12px}
-  .item .ask{margin-top:15px;border-left:2px solid var(--brass);padding:3px 0 3px 15px}
-  .item .ask span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-                  color:var(--dim);display:block;margin-bottom:4px}
-  .item .ask p{font-size:16.5px;color:var(--bone);font-style:italic}
-  .item .src{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:13px;display:block}
-  .qgrid{padding:8px 0 0}
-  .qblock{margin-top:28px}
-  .qblock h3{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-             color:var(--brass);font-weight:500;margin-bottom:12px}
-  .qblock ul{list-style:none}
-  .qblock li{position:relative;padding:11px 0 11px 26px;font-size:16.5px;color:var(--bone-2);
-             border-bottom:1px solid var(--line-2)}
-  .qblock li:last-child{border-bottom:none}
-  .qblock li:before{content:"";position:absolute;left:3px;top:21px;width:6px;height:6px;
-                    border-radius:50%;background:var(--brass);opacity:.75}
-  .closer{margin:48px 0 0;border:1px solid var(--line);border-radius:12px;padding:26px 28px}
-  .closer h3{font-size:19px;font-weight:600;margin-bottom:12px}
-  .closer p{font-size:16px;color:var(--bone-2)}
-  .closer p + p{margin-top:11px}
-  .cta{display:inline-block;margin-top:20px;background:var(--brass);color:#0E1512;font-weight:600;
-       font-size:16px;text-decoration:none;padding:14px 26px;border-radius:100px}
+  @media(max-width:600px){
+    body{font-size:16.5px}
+    .wrap{padding:0 20px}
+    nav .in,.jumpbar .in{padding-left:20px;padding-right:20px}
+    header{padding:48px 0 32px}
+    section.sec{padding:48px 0 6px;scroll-margin-top:104px}
+    .card{padding:22px 20px 20px}
+    .step{padding-left:52px}
+    .dot{width:36px;height:36px;font-size:12px}
+    .tl:before{left:18px}
+    .closer{padding:26px 22px}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head><body>
 
@@ -113,10 +162,10 @@
 <header><div class="wrap">
   <div class="eyebrow">Strategies</div>
   <h1>The things that actually move a dispute.</h1>
-  <p>Almost nobody is stuck because they do not know the law. They are stuck because of how the
-  problem has been framed, what each side assumes about the other, and what nobody has put on the
-  table yet. This is the method I use to change that, written out in full so you can see it before
-  you decide whether to use it.</p>
+  <p class="lede">Almost nobody is stuck because they do not know the law. They are stuck because
+  of how the problem has been framed, what each side assumes about the other, and what nobody has
+  put on the table yet. This is the method I use to change that, written out in full so you can
+  see it before you decide whether to use it.</p>
 
   <div class="note">
     <p><b>Use this whether or not you ever hire me.</b> None of it is secret and none of it is
@@ -125,131 +174,174 @@
     <p>This is general information about a process. It is not advice about your situation, and it
     is not legal advice.</p>
   </div>
-
-  <div class="jump"><a href="#prepare">Before you sit down</a><a href="#traps">Why sensible people stay stuck</a><a href="#moves">What we do in the room</a><a href="#questions">Questions worth asking</a></div>
 </div></header>
 
+<div class="jumpbar"><div class="in"><a href="#prepare">Before you sit down<b>5</b></a><a href="#traps">Why people stay stuck<b>6</b></a><a href="#moves">What we do in the room<b>9</b></a><a href="#questions">Questions worth asking<b>15</b></a></div></div>
+
+
   <section class="sec" id="prepare"><div class="wrap">
-    <div class="sec-h"><h2>Before you sit down</h2><p>Five things worth settling in your own head first. They do more for the outcome than anything that happens on the day.</p></div>
-      <div class="item">
-        <div class="iname">Know what actually happens if nothing is agreed</div>
+    <div class="sec-h">
+      <div class="kicker"><span>Five things</span> &middot; settle these first</div>
+      <h2>Before you sit down</h2>
+      <p>Worth deciding in your own head before the day. These do more for the outcome than
+      anything that happens in the room.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Know what actually happens if nothing is agreed</h3>
         <p class="what">Most people measure a settlement against their best day in court. The honest comparison sits three subtractions below that: the likely result rather than the best one, minus the legal fees to get there, minus the year or two it takes. Then one more subtraction that people forget entirely, which is whether the other side will actually be able to pay it when the day comes.</p>
-<div class="ask"><span>The question</span><p>If we never agree, what happens to me, by when, and what is left in my hand after costs?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>If we never agree, what happens to me, by when, and what is left in my hand after costs?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Separate what you are asking for from what you need</div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Separate what you are asking for from what you need</h3>
         <p class="what">A number is usually standing in for something else. Certainty. An exit. A date. Being taken seriously after months of being ignored. When the real need is named, there are often several ways to meet it, and only one of them was on the table.</p>
-<div class="ask"><span>The question</span><p>If I got the money but not the apology, would I take it? If I got the date but less money, would I take that?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>If I got the money but not the apology, would I take it? If I got the date but less money, would I take that?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Know what you can actually perform</div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Know what you can actually perform</h3>
         <p class="what">An agreement you cannot carry out is worse than no agreement, because you will be back here in six months having also spent the goodwill. This is the single most common reason settlements fail after they are signed.</p>
-<div class="ask"><span>The question</span><p>What can I do, by when, without needing anything else to go right first?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>What can I do, by when, without needing anything else to go right first?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Put a number on staying stuck</div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Put a number on staying stuck</h3>
         <p class="what">Being in a dispute has a monthly cost even when nothing is happening: carrying costs, interest, a property you cannot use or sell, professional fees, and the part of your attention it takes up. People rarely add it up, and it is often larger than the gap between the two positions.</p>
-<div class="ask"><span>The question</span><p>What is this costing me every month, and how many more months am I prepared to pay that?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>What is this costing me every month, and how many more months am I prepared to pay that?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Decide in advance what you will not trade</div>
+      <div class="card">
+        <div class="num">05</div>
+        <h3>Decide in advance what you will not trade</h3>
         <p class="what">Know your limit before you are in the room, not while someone is looking at you waiting for an answer. A limit you set calmly in advance is one you can hold without drama, and it makes everything above it genuinely negotiable.</p>
-<div class="ask"><span>The question</span><p>What is the one thing I will walk away over, and is it actually that, or is it pride?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>What is the one thing I will walk away over, and is it actually that, or is it pride?</p></div></div>
       </div>
+    </div>
   </div></section>
+
   <section class="sec" id="traps"><div class="wrap">
-    <div class="sec-h"><h2>Why sensible people stay stuck</h2><p>None of these are stupidity. Smart, well-advised people do all six. They are well documented, and simply seeing them named is usually enough to break their grip.</p></div>
-      <div class="item">
-        <div class="iname">Assuming there is one pot to split</div>
+    <div class="sec-h warn">
+      <div class="kicker"><span>Six traps</span> &middot; all of them ordinary</div>
+      <h2>Why sensible people stay stuck</h2>
+      <p>None of these are stupidity. Smart, well-advised people do all six. They are well
+      documented, and simply seeing them named is usually enough to break their grip.</p>
+    </div>
+    <div class="grid warn">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Assuming there is one pot to split</h3>
         <p class="what">The most destructive assumption people bring is that the resources are fixed, so any gain for the other side is a loss for you. Some disputes really are a single number. Most property disputes are not: they carry timing, possession, condition, repairs, chattels, who carries what until it sells, releases, and confidentiality. Each of those is something one side values more than the other, which is exactly what makes a trade possible.</p>
-<div class="ask"><span>The question</span><p>What is on this table that I care about less than they do, and what do they hold that I want more than they think?</p></div><span class="src">The &ldquo;mythical fixed pie,&rdquo; Program on Negotiation, Harvard Law School</span>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>What is on this table that I care about less than they do, and what do they hold that I want more than they think?</p></div></div><div class="src">The &ldquo;mythical fixed pie,&rdquo; Program on Negotiation, Harvard Law School</div>
       </div>
-      <div class="item">
-        <div class="iname">It is mine, so it is worth more</div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>It is mine, so it is worth more</h3>
         <p class="what">People consistently value what they own above what anyone else will pay for it. This is measured and it is ordinary, not a character flaw. It is why two honest co-owners can look at the same house and be a hundred thousand dollars apart without either of them lying.</p>
-<div class="ask"><span>The question</span><p>Am I valuing this at what it is worth, or at what it would cost me to give it up?</p></div><span class="src">The endowment effect</span>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>Am I valuing this at what it is worth, or at what it would cost me to give it up?</p></div></div><div class="src">The endowment effect</div>
       </div>
-      <div class="item">
-        <div class="iname">Being certain about what a court would do</div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Being certain about what a court would do</h3>
         <p class="what">In most disputes both sides have been told they have a strong case, and both believe it. They cannot both be right. That gap between two confident predictions is usually the whole reason the matter is still open.</p>
-<div class="ask"><span>The question</span><p>What would have to be true for the other side to win, and how sure am I that it is not?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>What would have to be true for the other side to win, and how sure am I that it is not?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Confusing being right with being paid</div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Confusing being right with being paid</h3>
         <p class="what">A decision in your favour is a finding that you are owed something. Turning that into money is a separate project with its own cost and timeline, and it only works if there is something on the other end to collect from.</p>
-<div class="ask"><span>The question</span><p>If I win, who writes the cheque, and out of what?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>If I win, who writes the cheque, and out of what?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Spending because you have already spent</div>
+      <div class="card">
+        <div class="num">05</div>
+        <h3>Spending because you have already spent</h3>
         <p class="what">Say you have spent $40,000 in legal fees getting to here. That $40,000 is gone. It is gone if you settle this afternoon and it is gone if you fight for another two years, because even winning recovers only a portion of your costs, and only if the other side can pay them. What you have already spent is a reason to want this finished properly. It is not a reason to spend the next $40,000 the same way.</p>
-<div class="ask"><span>The question</span><p>If this dispute landed on my desk today, exactly as it stands, and I had not spent a dollar yet, would I choose to spend the next $40,000 fighting it?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>If this dispute landed on my desk today, exactly as it stands, and I had not spent a dollar yet, would I choose to spend the next $40,000 fighting it?</p></div></div>
       </div>
-      <div class="item">
-        <div class="iname">Discounting anything because of who proposed it</div>
+      <div class="card">
+        <div class="num">06</div>
+        <h3>Discounting anything because of who proposed it</h3>
         <p class="what">Take one set of terms. Send it in an email from the other side&rsquo;s lawyer and people call it insulting. Put the identical terms in front of them from a neutral and they will think about it. Nothing changed but who said it. This is a large part of why having a third person in the room changes what is acceptable without changing what is actually on offer.</p>
-<div class="ask"><span>The question</span><p>If a friend I trusted had suggested this exact deal, would I still be saying no?</p></div>
+<div class="ask"><div class="in"><span class="lab">The question</span><p>If a friend I trusted had suggested this exact deal, would I still be saying no?</p></div></div>
       </div>
+    </div>
   </div></section>
+
   <section class="sec" id="moves"><div class="wrap">
-    <div class="sec-h"><h2>What we do in the room</h2><p>The actual method, in the order it tends to happen.</p></div>
-      <div class="item">
-        <div class="iname">The same read, given to both of you</div>
-        <p class="what">Before the session, both sides receive one identical document setting out the situation as it looks from outside it: the money, the timing, what the market says, the costs of continuing, and the exposure on each side. Nobody gets a version written for them. It is the fastest way to end the state where each side is negotiating against a picture only they can see.</p>
-
+    <div class="sec-h">
+      <div class="kicker"><span>Nine moves</span> &middot; in the order they happen</div>
+      <h2>What we do in the room</h2>
+      <p>The actual method, start to finish. Nothing here is secret, and you are entitled to know
+      exactly what you are walking into.</p>
+    </div>
+    <div class="tl">
+      <div class="step">
+        <div class="dot">01</div>
+        <div class="body"><h3>The same read, given to both of you</h3><p class="what">Before the session, both sides receive one identical document setting out the situation as it looks from outside it: the money, the timing, what the market says, the costs of continuing, and the exposure on each side. Nobody gets a version written for them. It is the fastest way to end the state where each side is negotiating against a picture only they can see.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">Private sessions</div>
-        <p class="what">Each side also meets with me alone. This is where people say the thing they will not say across the table, including what they would actually accept. It stays with me. Nothing from your private session goes to the other side unless you tell me to take it there.</p>
-
+      <div class="step">
+        <div class="dot">02</div>
+        <div class="body"><h3>Private sessions</h3><p class="what">Each side also meets with me alone. This is where people say the thing they will not say across the table, including what they would actually accept. It stays with me. Nothing from your private session goes to the other side unless you tell me to take it there.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">Reality testing</div>
-        <p class="what">Not telling you that you are wrong, and not arguing with you. Asking the one question your whole position rests on, and then waiting while you answer it. <em>All of this depends on a judge agreeing the deadline was waived. Your lawyer thinks that is likely. What is your plan for the month it goes the other way?</em> It is uncomfortable for about a minute, and then it is the most useful minute of the day. I do it to both sides, equally hard.</p>
-
+      <div class="step">
+        <div class="dot">03</div>
+        <div class="body"><h3>Reality testing</h3><p class="what">Not telling you that you are wrong, and not arguing with you. Asking the one question your whole position rests on, and then waiting while you answer it. <em>All of this depends on a judge agreeing the deadline was waived. Your lawyer thinks that is likely. What is your plan for the month it goes the other way?</em> It is uncomfortable for about a minute, and then it is the most useful minute of the day. I do it to both sides, equally hard.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">Widening the table</div>
-        <p class="what">When a single number is stuck, the move is usually to add issues rather than to keep splitting the one. Closing date, possession, what stays in the house, repairs, who carries the property until it sells, who lists it, a release of everything else between you, and confidentiality. The reason this works is simple: you each care about these things by different amounts, so handing over the one you care least about can buy the one you care most about. Splitting a single number can never do that.</p>
-
+      <div class="step">
+        <div class="dot">04</div>
+        <div class="body"><h3>Widening the table</h3><p class="what">When a single number is stuck, the move is usually to add issues rather than to keep splitting the one. Closing date, possession, what stays in the house, repairs, who carries the property until it sells, who lists it, a release of everything else between you, and confidentiality. The reason this works is simple: you each care about these things by different amounts, so handing over the one you care least about can buy the one you care most about. Splitting a single number can never do that.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">Pricing the disagreement instead of arguing it</div>
-        <p class="what">You say the house is worth $900,000. They say $780,000. Neither of you can prove it today, and you can spend a year and two appraisals trying. Or you can agree this afternoon that it goes on the market and the split is calculated on whatever it actually sells for, with a floor underneath so nobody is ruined if the market drops. You never have to settle the argument. It stops being the obstacle and becomes a line in the agreement.</p>
-<span class="src">The contingent contract, Program on Negotiation, Harvard Law School</span>
+      <div class="step">
+        <div class="dot">05</div>
+        <div class="body"><h3>Pricing the disagreement instead of arguing it</h3><p class="what">You say the house is worth $900,000. They say $780,000. Neither of you can prove it today, and you can spend a year and two appraisals trying. Or you can agree this afternoon that it goes on the market and the split is calculated on whatever it actually sells for, with a floor underneath so nobody is ruined if the market drops. You never have to settle the argument. It stops being the obstacle and becomes a line in the agreement.</p>
+        <div class="src">The contingent contract, Program on Negotiation, Harvard Law School</div></div>
       </div>
-      <div class="item">
-        <div class="iname">Brackets, when the numbers stall</div>
-        <p class="what">When two positions have stopped moving, a bracket restarts them: <em>I will come to X if they will come to Y.</em> Neither side concedes unilaterally, both signal a range they can live in, and the conversation moves from two fixed points to a zone.</p>
-
+      <div class="step">
+        <div class="dot">06</div>
+        <div class="body"><h3>Brackets, when the numbers stall</h3><p class="what">When two positions have stopped moving, a bracket restarts them: <em>I will come to X if they will come to Y.</em> Neither side concedes unilaterally, both signal a range they can live in, and the conversation moves from two fixed points to a zone.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">Structure before size</div>
-        <p class="what">A smaller amount that is secured, or staged, or paid next month, is frequently worth more than a larger amount backed by nothing. Someone who cannot write one cheque can often write six. This is where knowing the property and the market matters more than knowing the law.</p>
-
+      <div class="step">
+        <div class="dot">07</div>
+        <div class="body"><h3>Structure before size</h3><p class="what">A smaller amount that is secured, or staged, or paid next month, is frequently worth more than a larger amount backed by nothing. Someone who cannot write one cheque can often write six. This is where knowing the property and the market matters more than knowing the law.</p>
+        </div>
       </div>
-      <div class="item">
-        <div class="iname">A proposal from me, only at the end</div>
-        <p class="what">If everything else is exhausted and the gap is small, I can put a single proposal to both sides. It is governed: I only do it if both of you agree in advance to receive it, you each answer me privately, there is no deal unless you both accept it, and neither of you is told what the other said. Nobody is exposed by saying yes to something the other side rejected.</p>
-<span class="src">Adapted from the &ldquo;No One Gets Hurt&rdquo; protocol, Mitchell Rose, ADR Institute of Canada</span>
+      <div class="step">
+        <div class="dot">08</div>
+        <div class="body"><h3>A proposal from me, only at the end</h3><p class="what">If everything else is exhausted and the gap is small, I can put a single proposal to both sides. It is governed: I only do it if both of you agree in advance to receive it, you each answer me privately, there is no deal unless you both accept it, and neither of you is told what the other said. Nobody is exposed by saying yes to something the other side rejected.</p>
+        <div class="src">Adapted from the &ldquo;No One Gets Hurt&rdquo; protocol, Mitchell Rose, ADR Institute of Canada</div></div>
       </div>
-      <div class="item">
-        <div class="iname">Writing it down before anyone leaves</div>
-        <p class="what">Agreements reached and not recorded tend to come apart within the week, because each side remembers the version that favours them. Whatever is agreed is written the same day, in plain terms, and signed.</p>
-
+      <div class="step">
+        <div class="dot">09</div>
+        <div class="body"><h3>Writing it down before anyone leaves</h3><p class="what">Agreements reached and not recorded tend to come apart within the week, because each side remembers the version that favours them. Whatever is agreed is written the same day, in plain terms, and signed.</p>
+        </div>
       </div>
+    </div>
   </div></section>
+
   <section class="sec" id="questions"><div class="wrap">
-    <div class="sec-h"><h2>Questions worth asking</h2><p>Take these with you whether or not you ever speak to me. They work in any negotiation.</p></div>
+    <div class="sec-h">
+      <div class="kicker"><span>15 questions</span> &middot; take them with you</div>
+      <h2>Questions worth asking</h2>
+      <p>These work in any negotiation, with or without me in the room.</p>
+    </div>
     <div class="qgrid">
-    <div class="qblock"><h3>Ask yourself</h3><ul><li>What do I actually need out of this, as distinct from what I have been asking for?</li><li>What happens to me if there is no agreement at all, realistically, and when?</li><li>What is this costing me every month while it is unresolved?</li><li>What can I genuinely deliver, and by when?</li><li>What would have to be true for the other side to be right?</li><li>What is the smallest version of this I could accept and still feel finished?</li></ul></div>
-    <div class="qblock"><h3>Ask the other side</h3><ul><li>What does this need to look like for you to be able to sign it?</li><li>Which part of this matters most to you, and which part could move?</li><li>What can you actually perform, as opposed to what you would like to offer?</li><li>What are you worried about that we have not talked about?</li><li>If the money were right, what else would still be unresolved between us?</li></ul></div>
-    <div class="qblock"><h3>Ask about any proposed deal</h3><ul><li>Can both sides actually do this, without anything else having to go right?</li><li>What happens if one of us does not perform, and what backs it up?</li><li>Does this close everything between us, or does it leave something alive?</li><li>Is there anything here that only works if a number lands a certain way, and have we said what happens if it does not?</li></ul></div>
+      <div class="qcol"><h3>Ask yourself</h3><ul><li>What do I actually need out of this, as distinct from what I have been asking for?</li><li>What happens to me if there is no agreement at all, realistically, and when?</li><li>What is this costing me every month while it is unresolved?</li><li>What can I genuinely deliver, and by when?</li><li>What would have to be true for the other side to be right?</li><li>What is the smallest version of this I could accept and still feel finished?</li></ul></div>
+      <div class="qcol"><h3>Ask the other side</h3><ul><li>What does this need to look like for you to be able to sign it?</li><li>Which part of this matters most to you, and which part could move?</li><li>What can you actually perform, as opposed to what you would like to offer?</li><li>What are you worried about that we have not talked about?</li><li>If the money were right, what else would still be unresolved between us?</li></ul></div>
+      <div class="qcol"><h3>Ask about any proposed deal</h3><ul><li>Can both sides actually do this, without anything else having to go right?</li><li>What happens if one of us does not perform, and what backs it up?</li><li>Does this close everything between us, or does it leave something alive?</li><li>Is there anything here that only works if a number lands a certain way, and have we said what happens if it does not?</li></ul></div>
     </div>
 
     <div class="closer">
       <h3>What I do not do</h3>
-      <p>I do not decide anything, and I do not take a side. I do not act for either of you, and I give no legal advice to anyone. I do not push a settlement because it would be tidy, and you are free to end the process at any point.</p>
-      <p>I also never take the listing, the sale, or any brokerage work arising out of a dispute I mediate. That is a rule, not a preference, and you can hold me to it.</p>
+      <p>I do not decide anything, and I do not take a side. I do not act for either of you, and I
+      give no legal advice to anyone. I do not push a settlement because it would be tidy, and you
+      are free to end the process at any point.</p>
+      <p>I also never take the listing, the sale, or any brokerage work arising out of a dispute I
+      mediate. That is a rule, not a preference, and you can hold me to it.</p>
       <a class="cta" href="/#inquire">Start a confidential inquiry &rarr;</a>
     </div>
   </div></section>
