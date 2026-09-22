@@ -113,6 +113,13 @@ textarea{min-height:88px;line-height:1.5}
 .note p{font-size:14px;color:var(--bone2)}
 .note b{color:var(--bone)}
 .saved{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em}
+.pill-live{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:var(--brass);color:#0E1512;padding:4px 10px;border-radius:100px}
+.hatbadge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);padding:4px 9px;border-radius:100px}
+.playrow{display:grid;grid-template-columns:70px 1fr;gap:12px;margin-top:9px}
+.playrow span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding-top:3px}
+.playrow p{font-size:14.5px;color:var(--bone2);line-height:1.5}
+.playsrc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:12px;padding-top:10px;border-top:1px solid var(--line2)}
+@media(max-width:700px){.playrow{grid-template-columns:1fr;gap:2px}}
 </style></head>
 <body>
 
@@ -141,7 +148,7 @@ function flash(){const s=document.getElementById('saved');s.textContent='saved';
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-const STAGES=['Frame','Separate','Map','Expand','Pressure test','Decide','Review'];
+const STAGES=['Frame','Separate','Map','Expand','Pressure test','Decide','Review','Plays'];
 
 function blank(){return{id:uid(),created:Date.now(),title:'',
   decision:'',deadline:'',stakes:'',objective:'',constraints:'',
@@ -201,7 +208,7 @@ function roomView(){
       </div>
     </div>
     <div class="stagebar">${tabs}</div>
-    ${[frame,separate,map_,expand,pressure,decide,review][stage](r)}`;
+    ${[frame,separate,map_,expand,pressure,decide,review,playbook][stage](r)}`;
 }
 
 /* ------------------------------------------------------------- stage views -- */
@@ -409,6 +416,256 @@ function delOpt(i){cur.options.splice(i,1);save(DB);go('room')}
 function newRoom(){const r=blank();DB.push(r);save(DB);go('room',r.id)}
 function delRoom(){if(!confirm('Delete this decision room permanently?'))return;
   DB=DB.filter(x=>x.id!==cur.id);save(DB);go('list')}
+
+/* ------------------------------------------------------------------ plays --
+   The play library. Sources: The Resolver's Playbook (Cialdini, Voss,
+   Fisher & Ury, Carnegie, Greene, Laskin), the Harvard PON reports, and the
+   ADRIC material. Each play carries a trigger so the room can surface it at
+   the moment it applies rather than making you go looking.
+
+   hat: N = neutral/mediator, P = party/negotiator, B = both
+   fire(r): given a room, does this play apply right now?                    */
+const PLAYS = [
+
+/* ---- preparation -------------------------------------------------------- */
+{id:'prep', fam:'Preparation', hat:'B', name:'The prep sheet',
+ when:'Before anything serious. If you cannot answer these, you are ready to argue, not to negotiate.',
+ how:'Ideal, acceptable, walk-away. What they actually want and why. What they are afraid of losing. What "yes" would cost them, and how you lower that cost. Every bad thing they might think of you, said first. Your strongest point and their strongest counter. What you will not say.',
+ watch:'Skipping this and calling the resulting improvisation "reading the room".',
+ src:"The Resolver's Playbook, Part VIII",
+ fire:r=>!r.leverage&&!r.asymmetry},
+
+{id:'batna', fam:'Preparation', hat:'B', name:'Measure against the likely case, not the best one',
+ when:'Whenever you are comparing a deal on the table to "what I could get".',
+ how:'Take four subtractions off your best day: the likely result rather than the best one, the cost of getting there, the time it takes, and whether the other side can actually pay when the day comes.',
+ watch:'Comparing an offer against a fantasy and calling the offer insulting.',
+ src:'BATNA 101, Program on Negotiation',
+ fire:r=>r.options.length>=2&&!r.chosen},
+
+/* ---- the room ----------------------------------------------------------- */
+{id:'composure', fam:'The room', hat:'B', name:'Calm is the instrument',
+ when:'From the first ten minutes, and every time the temperature rises.',
+ how:'Be the thermostat, not the thermometer. Set the tone rather than matching it. If you tighten, they tighten. Unhurried, curious, unimpressed by heat.',
+ watch:'Mistaking aggression for force. Aggression is weakness dressed as strength.',
+ src:"The Resolver's Playbook, Part I",
+ always:true,fire:()=>false},
+
+{id:'empathy', fam:'The room', hat:'B', name:'Mirror, label, then wait',
+ when:'The other side is emotional, defensive, or repeating themselves.',
+ how:'Repeat their last one to three words, then four seconds of silence. Or label it: "It seems like this has not felt fair to you." Then stop talking. The silence does the work.',
+ watch:'Labelling and then immediately filling the gap. The pause is the technique.',
+ src:'Never Split the Difference, via the Playbook Part II',
+ always:true,fire:()=>false},
+
+{id:'accusation', fam:'The room', hat:'P', name:'Accusation audit',
+ when:'You know what they think of you and it is going to sit in the room unsaid.',
+ how:'Say it first, in their words, before they can. "You probably think I have dragged this out and only came to the table because I ran out of options."',
+ watch:'Softening it. A sanitised version does not defuse anything.',
+ src:'Never Split the Difference, via the Playbook Part II',
+ always:true,fire:()=>false},
+
+{id:'calibrated', fam:'The room', hat:'B', name:'Calibrated questions',
+ when:'You want movement without demanding it, or you need to say no without saying no.',
+ how:'"How am I supposed to do that?" · "What about this matters most to you?" · "What would need to be true for this to work?" · "How can we solve this together?"',
+ watch:'Using "why", which reads as accusation in almost every language.',
+ src:"The Resolver's Playbook, Part VIII phrase library",
+ always:true,fire:()=>false},
+
+{id:'softno', fam:'The room', hat:'P', name:'The soft no, in order',
+ when:'You need to refuse without ending the conversation.',
+ how:'1. "How am I supposed to do that?" 2. "Your offer is generous, I am sorry, that just does not work for me." 3. "I am sorry, I am afraid I just cannot do that." 4. "I am sorry, no."',
+ watch:'Jumping to four. You lose three chances to have them solve your problem for you.',
+ src:"The Resolver's Playbook, Part VIII",
+ always:true, fire:()=>false},
+
+{id:'stalled', fam:'The room', hat:'B', name:'When it goes quiet',
+ when:'They have stopped responding, or the conversation has died.',
+ how:'"Have you given up on resolving this?" or "It seems like you are ready to walk away. What would change that?"',
+ watch:'Chasing with more offers. Silence answered with concessions teaches them to stay silent.',
+ src:"The Resolver's Playbook, Part VIII",
+ always:true,fire:()=>false},
+
+/* ---- framing ------------------------------------------------------------ */
+{id:'fact-story', fam:'Framing', hat:'B', name:'Separate the fact from the story',
+ when:'Your assumptions outnumber your facts.',
+ how:'"He rejected three proposals" is a fact. "He does not respect me" is an interpretation. Move every interpretation out of the fact column and decide which of them is worth testing.',
+ watch:'Building a strategy on an interpretation you have never checked.',
+ src:"Resolve decision protocol",
+ fire:r=>r.assumptions.length>r.facts.length},
+
+{id:'buy-info', fam:'Framing', hat:'B', name:'Buy the answer before you decide',
+ when:'An unknown would change which option you pick.',
+ how:'Ask what it would cost to find out, in money and days. If that is small against the decision, the right move is not to decide yet. It is to go and learn.',
+ watch:'Treating "decide now" and "decide blind" as the same thing.',
+ src:'Resolve decision protocol',
+ fire:r=>r.unknowns.length>=2},
+
+{id:'interest', fam:'Framing', hat:'B', name:'The interest under the position',
+ when:'Both sides have stated what they want and neither will move.',
+ how:'A position is what they say. An interest is why. Two incompatible positions frequently sit on top of compatible interests, and only the interests can be traded.',
+ watch:'Negotiating positions harder and calling the deadlock their fault.',
+ src:'Getting to Yes, via the Playbook Part IV',
+ fire:r=>r.people.length>=1&&r.options.length&&r.options.length<5},
+
+/* ---- the deal structure ------------------------------------------------- */
+{id:'fixedpie', fam:'Deal structure', hat:'B', name:'The pot is not fixed',
+ when:'The dispute has been reduced to one number.',
+ how:'Add issues instead of splitting the one. Timing, possession, condition, repairs, who carries what until it settles, releases, confidentiality, who announces it and how. Each is worth more to one of you than the other, and that difference is where a trade comes from.',
+ watch:'Assuming any gain for them is a loss for you. It is the most expensive assumption in the room.',
+ src:'The mythical fixed pie, Program on Negotiation',
+ fire:r=>r.options.length<3},
+
+{id:'contingent', fam:'Deal structure', hat:'B', name:'Price the disagreement instead of arguing it',
+ when:'You disagree about a number or about what will happen, and neither of you can prove it today.',
+ how:'Agree now what happens in either case. A payment that adjusts to the actual outcome, a holdback released on a condition, a formula with a floor. The disagreement stops being the obstacle and becomes a term.',
+ watch:'Four limits: what they know that you do not, moral hazard, kinks in the incentive, and complexity cost. Think those through first.',
+ src:'The contingent contract, Subramanian, Program on Negotiation',
+ fire:r=>/\b\d{2,3},?\d{3}\b/.test((r.decision||'')+(r.stakes||''))||r.assumptions.length>=2},
+
+{id:'structure', fam:'Deal structure', hat:'B', name:'Structure before size',
+ when:'The number is agreed in principle but performance is in doubt.',
+ how:'A smaller amount secured, staged, or paid next month beats a larger amount backed by nothing. Someone who cannot write one cheque can often write six.',
+ watch:'Winning the number and losing the collection.',
+ src:'Resolve strategy · Mortgages Act s.27 reasoning',
+ fire:r=>!!r.chosen},
+
+{id:'bracket', fam:'Deal structure', hat:'B', name:'Brackets, when the numbers stall',
+ when:'Two positions have stopped moving and further offers just harden them.',
+ how:'"I will come to X if they will come to Y." Neither side concedes alone, both signal a range, and the conversation moves from two fixed points to a zone.',
+ watch:'Both sides read the midpoint as the implied landing. Do not bracket a range you cannot live in the middle of.',
+ src:'Negotiation brackets, AAA / Program on Negotiation',
+ fire:r=>r.options.length>=2&&!r.chosen},
+
+/* ---- the traps ---------------------------------------------------------- */
+{id:'endowment', fam:'Traps', hat:'B', name:'It is mine, so it is worth more',
+ when:'Two honest people are far apart on the value of something one of them owns.',
+ how:'Name it without insulting anyone. Owners consistently value what they hold above what anyone will pay. It is measured and ordinary, not a character flaw, and saying so out loud takes the accusation out of the gap.',
+ watch:'Assuming the other side is negotiating in bad faith when they are simply endowed.',
+ src:'The endowment effect',
+ always:true, fire:()=>false},
+
+{id:'sunk', fam:'Traps', hat:'B', name:'Spending because you have already spent',
+ when:'A party cites what they have already invested as a reason to continue.',
+ how:'What is spent is gone either way. It is a reason to want this finished properly. It is not a reason to spend the same again. Ask: if this landed on your desk today with nothing spent, would you choose to spend the next lot fighting it?',
+ watch:'This one is hardest to see in yourself.',
+ src:'Resolve strategies',
+ always:true,fire:()=>false},
+
+{id:'reactive', fam:'Traps', hat:'B', name:'Discounting an offer by who made it',
+ when:'Reasonable terms keep getting rejected out of hand.',
+ how:'The same terms from the other side read as an insult and from a neutral get considered. Nothing changed but the source. Route the proposal differently before you improve it.',
+ watch:'Improving an offer that was never being judged on its merits.',
+ src:'Resolve strategies',
+ always:true, fire:()=>false},
+
+{id:'certainty', fam:'Traps', hat:'B', name:'Both sides have been told they will win',
+ when:'Either party is certain about how a court would come out.',
+ how:'They cannot both be right, and the gap between two confident predictions is usually the whole reason this is still open. Ask what would have to be true for the other side to win.',
+ watch:'As a neutral, never cite authority in one direction only.',
+ src:'Resolve strategies · ADRIC evaluative practice',
+ always:true,fire:()=>false},
+
+{id:'judgment', fam:'Traps', hat:'B', name:'A judgment is not money',
+ when:'Someone is weighing litigation as the alternative.',
+ how:'Winning produces a finding that you are owed something. Collecting is a second project with its own cost and timeline, and it only works if there is something to collect from. Bankruptcy ends most of it.',
+ watch:'Comparing a settlement to a judgment rather than to a collected judgment.',
+ src:'Menon v. Simpson 2025 ONSC 6720 · Resolve guide',
+ always:true,fire:()=>false},
+
+/* ---- impasse ------------------------------------------------------------ */
+{id:'premortem', fam:'Impasse', hat:'B', name:'Pre-mortem',
+ when:'Before committing, and any time a choice feels obvious.',
+ how:'It is eighteen months later and this went badly. Write what happened, in past tense, as a story. It surfaces risks no risk list produces.',
+ watch:'Writing a list instead of a story. The narrative is what does the work.',
+ src:"Resolve decision protocol",
+ fire:r=>!r.premortem},
+
+{id:'redteam', fam:'Impasse', hat:'B', name:'Red team your own answer',
+ when:'You have a preferred option.',
+ how:'Make the strongest possible case against it. Properly. A weak version of the counter-argument is worse than none because it leaves you falsely reassured.',
+ watch:'Arguing against a straw version so you can dismiss it.',
+ src:"Resolve decision protocol",
+ fire:r=>!r.redteam&&!!r.options.length},
+
+{id:'proposal', fam:'Impasse', hat:'N', name:"A proposal from the neutral, last",
+ when:'Everything else is exhausted and the gap is small.',
+ how:'Governed: only if both agree in advance to receive it, each answers privately, no deal unless both accept, and neither is told what the other said. Nobody is exposed by saying yes to something the other refused.',
+ watch:'Offering it early. Used too soon it becomes the negotiation instead of ending one.',
+ src:'"No One Gets Hurt" protocol, Mitchell Rose, ADR Institute of Canada',
+ fire:r=>r.options.length>=3&&!r.chosen},
+
+{id:'facesave', fam:'Impasse', hat:'B', name:'Give them a path to yes they can explain',
+ when:'They are close but cannot be seen to move.',
+ how:'People refuse deals that make them look beaten to people whose opinion they care about. Find the version they can describe to their partner, their board, their family as a sensible outcome.',
+ watch:'Winning the last five percent and losing the agreement.',
+ src:"The Resolver's Playbook",
+ always:true, fire:()=>false},
+
+/* ---- closing ------------------------------------------------------------ */
+{id:'write', fam:'Closing', hat:'B', name:'Write it down before anyone leaves',
+ when:'Something has been agreed.',
+ how:'Agreements not recorded come apart within the week, because each side remembers the version that favoured them. Same day, plain terms, signed.',
+ watch:'"We are all clear on it" is not a record.',
+ src:"Resolve method",
+ fire:r=>!!r.chosen},
+
+{id:'perform', fam:'Closing', hat:'B', name:'Can they actually perform it',
+ when:'Before signing anything.',
+ how:'An agreement someone cannot carry out is worse than none, because you will be back in six months having also spent the goodwill. Ask what each side can do, by when, without anything else having to go right first.',
+ watch:'The most common reason signed settlements fail.',
+ src:'Resolve strategies',
+ fire:r=>!!r.chosen},
+
+{id:'review', fam:'Closing', hat:'B', name:'Check your confidence against reality',
+ when:'At the review date you set.',
+ how:'You recorded a number. Compare it to what happened. Over enough decisions this is the only thing that actually improves judgement, and almost nobody does it.',
+ watch:'Skipping review is why people with twenty years of experience often have one year of experience twenty times.',
+ src:'Resolve decision protocol',
+ fire:r=>!!r.reviewdate}
+];
+
+let hatF='B';
+function setHat(h){hatF=h;go('room')}
+function playCard(p,live){
+  return `<div class="opt" style="${live?'border-color:rgba(95,176,154,.45)':''}">
+    <div class="top" style="margin-bottom:8px">
+      <b style="font-size:16px;flex:1">${p.name}</b>
+      ${live?'<span class="pill-live">applies now</span>':''}
+      <span class="hatbadge">${p.hat==='N'?'In the chair':p.hat==='P'?'As a party':'Both'}</span>
+    </div>
+    <div class="playrow"><span>When</span><p>${p.when}</p></div>
+    <div class="playrow"><span>How</span><p>${p.how}</p></div>
+    <div class="playrow"><span>Watch</span><p>${p.watch}</p></div>
+    <div class="playsrc">${p.src}</div>
+  </div>`}
+
+function playbook(r){
+  const ok=p=>hatF==='B'||p.hat==='B'||p.hat===hatF;
+  const all=PLAYS.filter(ok);
+  let live=[];try{live=all.filter(p=>{try{return !p.always&&p.fire(r)}catch(e){return false}})}catch(e){}
+  const standing=all.filter(p=>p.always);
+  const shown=new Set([...live,...standing].map(p=>p.id));
+  const rest=all.filter(p=>!shown.has(p.id));
+  const fams=[...new Set(rest.map(p=>p.fam))];
+  return `<div class="stage">
+    <div class="h"><h2>Plays</h2>
+    <p>The Resolver's Playbook and the negotiation literature, surfaced against what you have entered.
+    Nothing here knows your situation. It knows which tool fits the shape of it.</p></div>
+    <div class="stagebar" style="margin-top:0">
+      <button class="${hatF==='B'?'on':''}" onclick="setHat('B')">Everything</button>
+      <button class="${hatF==='N'?'on':''}" onclick="setHat('N')">In the chair &middot; neutral</button>
+      <button class="${hatF==='P'?'on':''}" onclick="setHat('P')">As a party</button>
+    </div>
+    <h3 style="margin:22px 0 4px;font-size:15px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brass)">Applies to this decision &middot; ${live.length}</h3>
+    ${live.length?live.map(p=>playCard(p,true)).join(''):'<p style="color:var(--dim);margin-bottom:18px">Fill in more of the room and the relevant plays will surface here.</p>'}
+    <h3 style="margin:26px 0 4px;font-size:15px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--bone2)">Standing &middot; true in every room</h3>
+    ${standing.map(p=>playCard(p,false)).join('')}
+    ${fams.map(f=>`<h3 style="margin:26px 0 4px;font-size:15px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)">${f}</h3>
+      ${rest.filter(p=>p.fam===f).map(p=>playCard(p,false)).join('')}`).join('')}
+    <div class="note"><p><b>Source.</b> The Resolver's Playbook (Cialdini, Voss, Fisher &amp; Ury, Carnegie,
+    Greene, Laskin), the Harvard Program on Negotiation reports, and the ADR Institute of Canada material.
+    Full PDFs in <span style="font-family:var(--mono)">Mediation/Playbook/</span>. A summary is a map, not the territory.</p></div>
+  </div>`}
 
 go('list');
 </script>
