@@ -1,0 +1,415 @@
+<!doctype html><html lang="en-CA"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Room</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#111316;--panel:#181B1F;--panel2:#1F2328;--bone:#ECECE8;--bone2:#A7ABA5;
+      --dim:#767A73;--brass:#5FB09A;--clay:#C4906A;--red:#C4736A;
+      --line:rgba(236,236,232,.12);--line2:rgba(236,236,232,.06);
+      --disp:'Hanken Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ground);color:var(--bone);font-family:var(--disp);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brass)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* chrome */
+nav{position:sticky;top:0;z-index:30;background:rgba(17,19,22,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+nav .in{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:18px}
+.mark{font-weight:700;font-size:19px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.mark i{font-style:normal;color:var(--brass)}
+.mark span{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--dim);display:block;margin-top:2px}
+.navsp{flex:1}
+.btn{font-family:var(--disp);font-size:14px;font-weight:600;padding:9px 16px;border-radius:100px;border:1px solid var(--line);
+     background:none;color:var(--bone2);cursor:pointer;transition:.15s;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--brass);color:var(--bone)}
+.btn.pri{background:var(--brass);color:#0E1512;border-color:var(--brass)}
+.btn.pri:hover{filter:brightness(1.08);color:#0E1512}
+.btn.sm{font-size:12.5px;padding:6px 12px}
+.btn.danger:hover{border-color:var(--red);color:var(--red)}
+
+/* layout */
+main{padding:32px 0 100px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:8px}
+h1{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+h2{font-size:19px;font-weight:600;letter-spacing:-.015em}
+.sub{color:var(--bone2);font-size:15px;margin-top:8px;max-width:70ch}
+
+/* list */
+.rooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:26px}
+.room{background:var(--panel);border:1px solid var(--line2);border-radius:13px;padding:20px;cursor:pointer;transition:.15s}
+.room:hover{border-color:rgba(95,176,154,.4)}
+.room .t{font-size:17px;font-weight:600;line-height:1.3}
+.room .m{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:8px;letter-spacing:.06em}
+.room .bar{height:3px;background:var(--line2);border-radius:2px;margin-top:14px;overflow:hidden}
+.room .bar i{display:block;height:100%;background:var(--brass)}
+.empty{border:1px dashed var(--line);border-radius:13px;padding:40px;text-align:center;color:var(--dim);margin-top:26px}
+
+/* stages */
+.stagebar{display:flex;gap:6px;overflow-x:auto;margin:22px 0 4px;padding-bottom:6px;scrollbar-width:none}
+.stagebar::-webkit-scrollbar{display:none}
+.stagebar button{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;white-space:nowrap;padding:9px 14px;
+  border-radius:100px;border:1px solid var(--line);background:none;color:var(--bone2);cursor:pointer;transition:.15s}
+.stagebar button:hover{border-color:var(--brass)}
+.stagebar button.on{background:var(--brass);color:#0E1512;border-color:var(--brass);font-weight:500}
+.stagebar button b{color:var(--dim);font-weight:400;margin-right:7px}
+.stagebar button.on b{color:rgba(14,21,18,.6)}
+
+.stage{background:var(--panel);border:1px solid var(--line2);border-radius:14px;padding:26px 28px;margin-top:16px}
+.stage .h{margin-bottom:18px}
+.stage .h p{color:var(--bone2);font-size:14.5px;margin-top:6px;max-width:72ch}
+.fld{margin-bottom:18px}
+.fld label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.fld .hint{font-size:13px;color:var(--dim);margin-top:5px;font-style:italic}
+input[type=text],input[type=date],input[type=number],textarea,select{
+  width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--bone);
+  font-family:var(--disp);font-size:15px;padding:11px 13px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--brass)}
+textarea{min-height:88px;line-height:1.5}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+
+/* repeatable lists */
+.items{display:flex;flex-direction:column;gap:8px}
+.item{display:flex;gap:8px;align-items:flex-start}
+.item textarea,.item input{flex:1}
+.item .x{background:none;border:1px solid var(--line);color:var(--dim);border-radius:7px;width:34px;height:34px;
+         cursor:pointer;flex:0 0 34px;font-size:15px;line-height:1}
+.item .x:hover{border-color:var(--red);color:var(--red)}
+.add{margin-top:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+     background:none;border:1px dashed var(--line);color:var(--bone2);border-radius:8px;padding:9px 14px;cursor:pointer}
+.add:hover{border-color:var(--brass);color:var(--bone)}
+
+.bucket{border-left:2px solid var(--brass);padding-left:16px;margin-bottom:22px}
+.bucket.assume{border-left-color:var(--clay)}
+.bucket.unknown{border-left-color:var(--red)}
+.bucket.interp{border-left-color:var(--dim)}
+.bucket h3{font-size:15.5px;font-weight:600;margin-bottom:4px}
+.bucket p{font-size:13px;color:var(--dim);margin-bottom:10px;font-style:italic}
+
+/* option cards */
+.opt{background:var(--panel2);border:1px solid var(--line2);border-radius:11px;padding:18px;margin-bottom:12px}
+.opt .top{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.opt .top input{flex:1;font-weight:600}
+.opt .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.opt .grid{grid-template-columns:1fr}}
+
+/* readout */
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:6px}
+.metric{background:var(--panel2);border:1px solid var(--line2);border-radius:11px;padding:16px}
+.metric .n{font-size:26px;font-weight:600;font-variant-numeric:tabular-nums}
+.metric .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+.metric .d{font-size:12.5px;color:var(--bone2);margin-top:7px;line-height:1.45}
+.metric.good .n{color:var(--brass)} .metric.mid .n{color:var(--clay)} .metric.low .n{color:var(--red)}
+
+.brief{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px;font-family:var(--mono);
+       font-size:13px;line-height:1.75;white-space:pre-wrap;color:var(--bone2);max-height:520px;overflow:auto}
+.rowbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.note{border-left:2px solid var(--brass);background:rgba(95,176,154,.06);padding:15px 18px;border-radius:0 9px 9px 0;margin-top:18px}
+.note p{font-size:14px;color:var(--bone2)}
+.note b{color:var(--bone)}
+.saved{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em}
+</style></head>
+<body>
+
+<nav><div class="in">
+  <a class="mark" href="#" onclick="go('list');return false">Resolve<i>.</i><span>Decision Room</span></a>
+  <div class="navsp"></div>
+  <span class="saved" id="saved"></span>
+  <button class="btn sm" onclick="exportAll()">Back up all</button>
+  <button class="btn sm pri" onclick="newRoom()">New decision</button>
+</div></nav>
+
+<main><div class="wrap">
+  <div id="view"></div>
+</div></main>
+
+<script>
+/* ---------------------------------------------------------------- storage --
+   Everything lives in this browser's localStorage. Nothing is ever sent to a
+   server, because there isn't one. Clearing site data erases it, so use
+   "Back up all" periodically.                                              */
+const KEY='resolve.decisionrooms.v1';
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}};
+const save=d=>{try{localStorage.setItem(KEY,JSON.stringify(d));flash()}catch(e){alert('Could not save: '+e.message)}};
+let DB=load(), cur=null, stage=0;
+function flash(){const s=document.getElementById('saved');s.textContent='saved';setTimeout(()=>s.textContent='',1400)}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const STAGES=['Frame','Separate','Map','Expand','Pressure test','Decide','Review'];
+
+function blank(){return{id:uid(),created:Date.now(),title:'',
+  decision:'',deadline:'',stakes:'',objective:'',constraints:'',
+  facts:[],assumptions:[],unknowns:[],interps:[],
+  people:[],leverage:'',asymmetry:'',
+  options:[],
+  premortem:'',redteam:'',changemind:'',
+  chosen:'',rationale:'',confidence:'',reversible:'',nextactions:[],reviewdate:'',
+  outcome:'',learned:''}}
+
+/* ------------------------------------------------------------------ views -- */
+function go(v,id){ if(id){cur=DB.find(r=>r.id===id); stage=0;}
+  document.getElementById('view').innerHTML = v==='list'?listView():roomView();
+  window.scrollTo(0,0); }
+
+function listView(){
+  const rows=DB.slice().sort((a,b)=>b.created-a.created);
+  const cards=rows.map(r=>{
+    const p=progress(r);
+    return `<div class="room" onclick="go('room','${r.id}')">
+      <div class="t">${esc(r.title||r.decision||'Untitled decision')}</div>
+      <div class="m">${new Date(r.created).toLocaleDateString('en-CA')} &middot; ${p}% complete${r.deadline?' &middot; due '+esc(r.deadline):''}</div>
+      <div class="bar"><i style="width:${p}%"></i></div>
+    </div>`}).join('');
+  return `<div class="eyebrow">Private &middot; this browser only</div>
+    <h1>Decision Rooms</h1>
+    <p class="sub">One room per consequential decision. The protocol runs Frame, Separate, Map, Expand,
+    Pressure test, Decide, Review. Nothing leaves this browser.</p>
+    ${rows.length?`<div class="rooms">${cards}</div>`
+      :`<div class="empty">No decisions yet. Start one with <b>New decision</b>.</div>`}
+    <div class="note"><p><b>Where your data lives.</b> In this browser, on this machine, in localStorage.
+    There is no server and no account, which is why nobody else can see it. It also means clearing site
+    data deletes it, so use <b>Back up all</b> to keep a copy.</p></div>`;
+}
+
+function progress(r){
+  const checks=[r.decision,r.objective,r.stakes,
+    r.facts.length,r.assumptions.length,r.unknowns.length,
+    r.people.length,r.options.length>=3,
+    r.options.some(o=>o.mustbetrue&&o.failmode),
+    r.premortem,r.redteam,r.chosen,r.nextactions.length,r.reviewdate];
+  return Math.round(checks.filter(Boolean).length/checks.length*100);
+}
+
+function roomView(){
+  const r=cur;
+  const tabs=STAGES.map((s,i)=>`<button class="${i===stage?'on':''}" onclick="stage=${i};go('room')"><b>${i+1}</b>${s}</button>`).join('');
+  return `<div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px">
+        <div class="eyebrow">Decision Room</div>
+        <input type="text" value="${esc(r.title)}" placeholder="Name this decision"
+          oninput="set('title',this.value)" style="font-size:24px;font-weight:600;border:none;background:none;padding:0">
+      </div>
+      <div class="rowbtns" style="margin:0">
+        <button class="btn sm" onclick="go('list')">All rooms</button>
+        <button class="btn sm danger" onclick="delRoom()">Delete</button>
+      </div>
+    </div>
+    <div class="stagebar">${tabs}</div>
+    ${[frame,separate,map_,expand,pressure,decide,review][stage](r)}`;
+}
+
+/* ------------------------------------------------------------- stage views -- */
+function fld(label,key,ph,hint,type){return `<div class="fld"><label>${label}</label>
+  ${type==='area'?`<textarea placeholder="${ph}" oninput="set('${key}',this.value)">${esc(cur[key])}</textarea>`
+   :`<input type="${type||'text'}" value="${esc(cur[key])}" placeholder="${ph}" oninput="set('${key}',this.value)">`}
+  ${hint?`<div class="hint">${hint}</div>`:''}</div>`}
+
+function listBlock(key,label,hint,cls){
+  const items=cur[key].map((v,i)=>`<div class="item">
+    <textarea oninput="setItem('${key}',${i},this.value)" style="min-height:52px">${esc(v)}</textarea>
+    <button class="x" onclick="delItem('${key}',${i})">&times;</button></div>`).join('');
+  return `<div class="bucket ${cls||''}"><h3>${label}</h3><p>${hint}</p>
+    <div class="items">${items}</div>
+    <button class="add" onclick="addItem('${key}')">+ Add</button></div>`}
+
+function frame(r){return `<div class="stage">
+  <div class="h"><h2>Frame the decision</h2>
+  <p>Most bad decisions are badly framed ones. Write the decision as a choice, not as a complaint.</p></div>
+  ${fld('The decision','decision','Whether to buy out my partner, or restructure the agreement, or exit myself.','State it as a choice between real alternatives. If it reads as a grievance, it is not framed yet.','area')}
+  <div class="two">
+    ${fld('Decide by','deadline','','When does this stop being your choice?','date')}
+    ${fld('What is at stake','stakes','Roughly $340k and the working relationship.','Money, time, relationship, reputation, optionality.')}
+  </div>
+  ${fld('What outcome am I actually after','objective','Out of the business by spring with the goodwill intact.','Not the position. The underlying need. Ask why three times.','area')}
+  ${fld('Hard constraints','constraints','Cannot use borrowed money. Cannot involve the other shareholders before March.','Things that are genuinely fixed, as opposed to things that merely feel fixed.','area')}
+</div>`}
+
+function separate(r){return `<div class="stage">
+  <div class="h"><h2>Separate reality from story</h2>
+  <p>Split what you have. Most of what feels like fact is interpretation, and most of the risk lives in the unknowns.</p></div>
+  ${listBlock('facts','Facts','Verifiable, and you could show someone the evidence.')}
+  ${listBlock('assumptions','Assumptions','Believed but not verified. These are where decisions break.','assume')}
+  ${listBlock('unknowns','Unknowns','Things you would need to find out. Mark the ones worth paying to learn.','unknown')}
+  ${listBlock('interps','Interpretations','Meanings you have attached to facts. "He did not reply" is a fact; "he is stonewalling" is not.','interp')}
+</div>`}
+
+function map_(r){
+  const items=cur.people.map((p,i)=>`<div class="opt">
+    <div class="top"><input type="text" value="${esc(p.name)}" placeholder="Who" oninput="setPerson(${i},'name',this.value)">
+      <button class="x" onclick="delPerson(${i})">&times;</button></div>
+    <div class="grid">
+      <div class="fld" style="margin:0"><label>What they want</label>
+        <textarea oninput="setPerson(${i},'wants',this.value)" style="min-height:60px">${esc(p.wants)}</textarea></div>
+      <div class="fld" style="margin:0"><label>What moves them</label>
+        <textarea oninput="setPerson(${i},'incentive',this.value)" style="min-height:60px">${esc(p.incentive)}</textarea></div>
+    </div></div>`).join('');
+  return `<div class="stage">
+  <div class="h"><h2>Map the board</h2>
+  <p>Everyone who can affect or block this, and what actually moves them. Their stated position is not their interest.</p></div>
+  ${items}<button class="add" onclick="addPerson()">+ Add person</button>
+  <div style="margin-top:22px">
+    ${fld('Leverage','leverage','What do I have that they want? What do they have that I want?','Leverage is rarely money alone. Time, certainty, information and reputation all count.','area')}
+    ${fld('Information asymmetry','asymmetry','What do they know that I do not?','The question that most often changes a negotiation.','area')}
+  </div>
+</div>`}
+
+function expand(r){
+  const items=cur.options.map((o,i)=>`<div class="opt">
+    <div class="top"><input type="text" value="${esc(o.name)}" placeholder="Option ${i+1}" oninput="setOpt(${i},'name',this.value)">
+      <button class="x" onclick="delOpt(${i})">&times;</button></div>
+    <textarea placeholder="What this actually involves" oninput="setOpt(${i},'detail',this.value)" style="min-height:60px">${esc(o.detail)}</textarea>
+  </div>`).join('');
+  return `<div class="stage">
+  <div class="h"><h2>Expand the options</h2>
+  <p>Almost every stuck decision is a false binary. Before you judge any of these, get to five.</p></div>
+  ${items}<button class="add" onclick="addOpt()">+ Add option</button>
+  <div class="note"><p><b>Prompts, if you are stuck at two:</b> a modified version of each. A hybrid.
+  Delay and decide later on purpose. Buy information first. Negotiate a different deal entirely.
+  Walk away. Do nothing, deliberately. Change who is at the table. Change the timeline.</p></div>
+</div>`}
+
+function pressure(r){
+  const items=cur.options.map((o,i)=>`<div class="opt">
+    <div class="top"><b style="font-size:16px">${esc(o.name)||'Option '+(i+1)}</b></div>
+    <div class="grid">
+      <div class="fld" style="margin:0"><label>What must be true</label>
+        <textarea oninput="setOpt(${i},'mustbetrue',this.value)" style="min-height:64px">${esc(o.mustbetrue)}</textarea></div>
+      <div class="fld" style="margin:0"><label>How it fails</label>
+        <textarea oninput="setOpt(${i},'failmode',this.value)" style="min-height:64px">${esc(o.failmode)}</textarea></div>
+      <div class="fld" style="margin:0"><label>Second-order effect</label>
+        <textarea oninput="setOpt(${i},'second',this.value)" style="min-height:64px">${esc(o.second)}</textarea></div>
+      <div class="fld" style="margin:0"><label>Cost if I am wrong</label>
+        <textarea oninput="setOpt(${i},'wrongcost',this.value)" style="min-height:64px">${esc(o.wrongcost)}</textarea></div>
+    </div></div>`).join('');
+  return `<div class="stage">
+  <div class="h"><h2>Pressure test</h2>
+  <p>Not whether you like an option. Whether it survives contact with the things you would rather not think about.</p></div>
+  ${items||'<p style="color:var(--dim)">Add options in the previous stage first.</p>'}
+  <div style="margin-top:22px">
+    ${fld('Pre-mortem','premortem','It is eighteen months later and this went badly. Write what happened.','Written in past tense, as a story. It surfaces risks that a risk list never does.','area')}
+    ${fld('Red team','redteam','Make the strongest possible case against what I am inclined to do.','Argue it properly. A weak version of the counter-argument is worse than none.','area')}
+    ${fld('What would change my mind','changemind','A signed term sheet from the other buyer. Or the February numbers coming in under 40k.','If nothing would, this is not a decision, it is a justification.','area')}
+  </div>
+</div>`}
+
+function decide(r){
+  const acts=cur.nextactions.map((v,i)=>`<div class="item">
+    <input type="text" value="${esc(v)}" oninput="setItem('nextactions',${i},this.value)">
+    <button class="x" onclick="delItem('nextactions',${i})">&times;</button></div>`).join('');
+  return `<div class="stage">
+  <div class="h"><h2>Decide</h2><p>State it plainly, with the reasoning, so the version of you in six months can audit it.</p></div>
+  ${fld('The decision','chosen','','What you are actually doing.','area')}
+  ${fld('Why','rationale','','The two or three reasons that carried the most weight.','area')}
+  <div class="two">
+    ${fld('Confidence (%)','confidence','65','Honest number. It gets checked at review.','number')}
+    ${fld('Reversible?','reversible','Reversible within 60 days at a cost of about 15k','Cheap to undo means decide fast. Expensive to undo means slow down.')}
+  </div>
+  <div class="fld"><label>Next actions</label><div class="items">${acts}</div>
+    <button class="add" onclick="addItem('nextactions')">+ Add action</button></div>
+  ${fld('Review on','reviewdate','','Put it in the calendar now.','date')}
+  ${readout(r)}
+</div>`}
+
+function review(r){return `<div class="stage">
+  <div class="h"><h2>Review</h2><p>The stage everyone skips, and the only one that makes you better at this.</p></div>
+  ${fld('What actually happened','outcome','','Against what you predicted, and against the confidence you recorded.','area')}
+  ${fld('What I got wrong, and what I would do differently','learned','','Be specific. "Underestimated how long the lender would take" beats "should have been more careful."','area')}
+  ${readout(r)}
+  <h2 style="margin-top:26px">Decision brief</h2>
+  <p class="sub" style="margin-bottom:14px">Copy this out, or paste it into Claude for a second read.</p>
+  <div class="brief" id="brief">${esc(brief(r))}</div>
+  <div class="rowbtns">
+    <button class="btn pri" onclick="copyBrief()">Copy brief</button>
+    <button class="btn" onclick="copyPrompt()">Copy as AI prompt</button>
+    <button class="btn" onclick="dlBrief()">Download .md</button>
+  </div>
+</div>`}
+
+/* --------------------------------------------------------------- readout --- */
+function readout(r){
+  const m=[
+    ['Clarity', r.decision&&r.objective&&r.stakes?100:r.decision?50:0, 'Is the decision actually framed as a choice, with a stated objective and stakes?'],
+    ['Evidence', pct(r.facts.length, r.facts.length+r.assumptions.length), 'Facts as a share of facts plus assumptions. Low is not bad, it means go and find out.'],
+    ['Options', Math.min(100, Math.round(r.options.length/5*100)), 'Five or more genuinely different paths clears the false binary.'],
+    ['Downside', pct(r.options.filter(o=>o.failmode&&o.wrongcost).length, r.options.length||1), 'Share of options with a failure mode and a cost of being wrong.'],
+    ['Challenge', (r.premortem?50:0)+(r.redteam?50:0), 'Pre-mortem and red team both done.'],
+    ['Open questions', r.unknowns.length, 'Count. Not a score. Decide whether any are worth buying an answer to.', true],
+  ];
+  return `<h2 style="margin-top:26px">Decision quality</h2>
+    <p class="sub" style="margin-bottom:14px">This measures how thoroughly you ran the process, not whether the call is right. Nothing here knows your business.</p>
+    <div class="readout">${m.map(([l,v,d,raw])=>{
+      const cls = raw ? '' : (v>=70?'good':v>=40?'mid':'low');
+      return `<div class="metric ${cls}"><div class="n">${raw?v:v+'%'}</div><div class="l">${l}</div><div class="d">${d}</div></div>`}).join('')}</div>`}
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+
+/* ----------------------------------------------------------------- brief --- */
+function brief(r){
+  const L=[], add=(k,v)=>{if(v&&String(v).trim())L.push(k+': '+v)};
+  const bl=(k,a)=>{if(a&&a.length)L.push('\n'+k+'\n'+a.filter(Boolean).map(x=>'  - '+x).join('\n'))};
+  L.push('DECISION BRIEF'); L.push('='.repeat(46));
+  add('Title', r.title); add('Prepared', new Date().toLocaleDateString('en-CA'));
+  L.push('\nFRAME'); add('Decision', r.decision); add('Decide by', r.deadline);
+  add('At stake', r.stakes); add('Objective', r.objective); add('Constraints', r.constraints);
+  L.push('\nWHAT WE KNOW'); bl('Facts', r.facts); bl('Assumptions', r.assumptions);
+  bl('Unknowns', r.unknowns); bl('Interpretations (not facts)', r.interps);
+  if(r.people.length){L.push('\nTHE BOARD');
+    r.people.forEach(p=>L.push('  '+(p.name||'?')+' — wants: '+(p.wants||'?')+' | moved by: '+(p.incentive||'?')))}
+  add('Leverage', r.leverage); add('Information asymmetry', r.asymmetry);
+  if(r.options.length){L.push('\nOPTIONS');
+    r.options.forEach((o,i)=>{L.push('  '+(i+1)+'. '+(o.name||'Untitled'));
+      if(o.detail)L.push('     '+o.detail);
+      if(o.mustbetrue)L.push('     Must be true: '+o.mustbetrue);
+      if(o.failmode)L.push('     Fails if: '+o.failmode);
+      if(o.second)L.push('     Second-order: '+o.second);
+      if(o.wrongcost)L.push('     Cost if wrong: '+o.wrongcost)})}
+  L.push('\nCHALLENGE'); add('Pre-mortem', r.premortem); add('Red team', r.redteam);
+  add('What would change my mind', r.changemind);
+  L.push('\nDECISION'); add('Chosen', r.chosen); add('Why', r.rationale);
+  add('Confidence', r.confidence?r.confidence+'%':''); add('Reversibility', r.reversible);
+  bl('Next actions', r.nextactions); add('Review on', r.reviewdate);
+  if(r.outcome||r.learned){L.push('\nREVIEW'); add('What happened', r.outcome); add('Learned', r.learned)}
+  return L.join('\n');
+}
+const PROMPT=`You are acting as a rigorous, sceptical decision advisor. Below is a decision brief I prepared using a structured protocol.
+
+Do NOT tell me what to do first. Instead:
+1. Tell me what is missing or weakly supported.
+2. Name anything I have recorded as a fact that is actually an assumption.
+3. Give me the strongest argument against my chosen option.
+4. Tell me which single unknown is most worth resolving before I decide, and how I would resolve it.
+5. Only then, if you think the decision is sound, say so and why.
+
+Be blunt. I would rather be corrected now than later.
+
+`;
+function copyBrief(){navigator.clipboard.writeText(brief(cur)).then(()=>alert('Brief copied.'))}
+function copyPrompt(){navigator.clipboard.writeText(PROMPT+brief(cur)).then(()=>alert('Prompt copied. Paste into Claude.'))}
+function dlBrief(){const b=new Blob([brief(cur)],{type:'text/markdown'});const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download=(cur.title||'decision').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'.md';a.click()}
+function exportAll(){const b=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download='decision-rooms-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click()}
+
+/* ----------------------------------------------------------------- edits --- */
+function set(k,v){cur[k]=v;save(DB)}
+function setItem(k,i,v){cur[k][i]=v;save(DB)}
+function addItem(k){cur[k].push('');save(DB);go('room')}
+function delItem(k,i){cur[k].splice(i,1);save(DB);go('room')}
+function addPerson(){cur.people.push({name:'',wants:'',incentive:''});save(DB);go('room')}
+function setPerson(i,k,v){cur.people[i][k]=v;save(DB)}
+function delPerson(i){cur.people.splice(i,1);save(DB);go('room')}
+function addOpt(){cur.options.push({name:'',detail:'',mustbetrue:'',failmode:'',second:'',wrongcost:''});save(DB);go('room')}
+function setOpt(i,k,v){cur.options[i][k]=v;save(DB)}
+function delOpt(i){cur.options.splice(i,1);save(DB);go('room')}
+function newRoom(){const r=blank();DB.push(r);save(DB);go('room',r.id)}
+function delRoom(){if(!confirm('Delete this decision room permanently?'))return;
+  DB=DB.filter(x=>x.id!==cur.id);save(DB);go('list')}
+
+go('list');
+</script>
+</body></html>
