@@ -359,11 +359,15 @@ const pct=(a,b)=>b?Math.round(a/b*100):0;
 function brief(r){
   const L=[], add=(k,v)=>{if(v&&String(v).trim())L.push(k+': '+v)};
   const bl=(k,a)=>{if(a&&a.length)L.push('\n'+k+'\n'+a.filter(Boolean).map(x=>'  - '+x).join('\n'))};
+  /* a section with nothing under it says so, instead of printing a bare heading.
+     the gap is information: a reader should see what was never filled in. */
+  let mark=0; const gap=()=>{if(mark&&L.length===mark)L.push('  (nothing recorded yet)');mark=0};
+  const sec=t=>{gap();L.push('\n'+t);mark=L.length};
   L.push('DECISION BRIEF'); L.push('='.repeat(46));
   add('Title', r.title); add('Prepared', new Date().toLocaleDateString('en-CA'));
-  L.push('\nFRAME'); add('Decision', r.decision); add('Decide by', r.deadline);
+  sec('FRAME'); add('Decision', r.decision); add('Decide by', r.deadline);
   add('At stake', r.stakes); add('Objective', r.objective); add('Constraints', r.constraints);
-  L.push('\nWHAT WE KNOW'); bl('Facts', r.facts); bl('Assumptions', r.assumptions);
+  sec('WHAT WE KNOW'); bl('Facts', r.facts); bl('Assumptions', r.assumptions);
   bl('Unknowns', r.unknowns); bl('Interpretations (not facts)', r.interps);
   if(r.people.length){L.push('\nTHE BOARD');
     r.people.forEach(p=>L.push('  '+(p.name||'?')+' — wants: '+(p.wants||'?')+' | moved by: '+(p.incentive||'?')))}
@@ -375,11 +379,12 @@ function brief(r){
       if(o.failmode)L.push('     Fails if: '+o.failmode);
       if(o.second)L.push('     Second-order: '+o.second);
       if(o.wrongcost)L.push('     Cost if wrong: '+o.wrongcost)})}
-  L.push('\nCHALLENGE'); add('Pre-mortem', r.premortem); add('Red team', r.redteam);
+  sec('CHALLENGE'); add('Pre-mortem', r.premortem); add('Red team', r.redteam);
   add('What would change my mind', r.changemind);
-  L.push('\nDECISION'); add('Chosen', r.chosen); add('Why', r.rationale);
+  sec('DECISION'); add('Chosen', r.chosen); add('Why', r.rationale);
   add('Confidence', r.confidence?r.confidence+'%':''); add('Reversibility', r.reversible);
   bl('Next actions', r.nextactions); add('Review on', r.reviewdate);
+  gap();
   if(r.outcome||r.learned){L.push('\nREVIEW'); add('What happened', r.outcome); add('Learned', r.learned)}
   return L.join('\n');
 }
