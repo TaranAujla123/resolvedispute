@@ -398,13 +398,13 @@
 <section id="resolve" class="rv"><div class="wrap">
   <div class="kick">
     <div class="eyebrow">What we resolve</div>
-    <h2>One specialty. Three ways it <em>shows up.</em></h2>
-    <p class="kick-sub">Every file here has a property at the centre of it. What changes is who is standing on the other side &mdash; and that changes almost everything about how it gets resolved.</p>
+    <h2>One specialty. Three people on <em>the other side.</em></h2>
+    <p class="kick-sub">Every file here is real estate. What changes is who is standing on the other side of it &mdash; and that changes almost everything about how it gets resolved.</p>
   </div>
   <div class="rgrid two">
-    <div class="rc"><div class="rt">Real Estate</div><div class="rd">Any disagreement that turns on a property. Failed closings and deposits, co-ownership and partition, assignments, estate property and inheritances, commercial leases. Those are the common ones, not the limits.</div></div>
-    <div class="rc"><div class="rt">Business</div><div class="rd">Where the asset in the argument is the building. Partners and shareholders who own property together, family businesses, commercial leases, break-ups and negotiated exits. Those are the common ones, not the limits.</div></div>
-    <div class="rc"><div class="rt">Family</div><div class="rd">Separations and estates, where the hard part is usually a property or a business. Who stays, who is bought out, on what timeline, and what happens in the meantime. You each keep your own lawyer, and some of this belongs with them before it belongs with me.</div></div>
+    <div class="rc"><div class="rt">The other side of a deal</div><div class="rd">A transaction that did not close, or is about to not close. Deposits, failed closings, assignments, extensions, something discovered after the fact, a commercial lease that has gone wrong. There is usually a real clock on these, and both sides can feel it.</div></div>
+    <div class="rc"><div class="rt">A co-owner or a partner</div><div class="rd">You own it together and you no longer agree what happens to it. Siblings, friends who bought in a better year, partners and shareholders whose asset is the building. One of you wants out, one wants to keep it, and neither wants to hand the decision to a court.</div></div>
+    <div class="rc"><div class="rt">A separation or an estate</div><div class="rd">The property is the hard part of something larger. A separation where the house is the biggest thing either of you owns, or an estate where several people inherited one building. You each keep your own lawyer, and some of this belongs with them before it belongs with me.</div></div>
   </div>
   <p class="resolve-more"><span class="rm-label">The bigger picture</span>In every one of these, the legal question is only part of it. Money, timing, control, pride, relationships, and what happens tomorrow matter just as much &mdash; and the workable deal is almost always built out of those, not out of who was right.</p>
 </div></section>
@@ -652,12 +652,12 @@
 
     <div class="wiz-step" id="ws1">
       <p class="wiz-count">Step 1 of 4</p>
-      <p class="wiz-label">What is this about?</p>
+      <p class="wiz-label">Who is on the other side?</p>
       <p class="wiz-sub">Pick whichever is closest. Nothing is sent until the last step.</p>
       <div class="catgrid" id="catgrid">
-        <button type="button" class="cat" data-cat="re"><span class="ct">Real estate</span><span class="cs">Closings, co-ownership, assignments</span></button>
-        <button type="button" class="cat" data-cat="bus"><span class="ct">Business</span><span class="cs">Partners, contracts, vendors, exits</span></button>
-        <button type="button" class="cat" data-cat="fam"><span class="ct">Family</span><span class="cs">Separations, estates, a shared property</span></button>
+        <button type="button" class="cat" data-cat="re"><span class="ct">The other side of a deal</span><span class="cs">A closing, a deposit, an assignment, a lease</span></button>
+        <button type="button" class="cat" data-cat="bus"><span class="ct">A co-owner or a partner</span><span class="cs">You own it together and disagree</span></button>
+        <button type="button" class="cat" data-cat="fam"><span class="ct">A separation or an estate</span><span class="cs">The property is part of something larger</span></button>
         <button type="button" class="cat" data-cat="oth"><span class="ct">Something else</span><span class="cs">Describe it on the next step</span></button>
       </div>
 
@@ -665,22 +665,20 @@
         <p class="wiz-label sm">More specifically</p>
         <div class="optgrid" id="typegrid">
         <label data-cat="re" hidden><input type="radio" name="type" value="Failed closing / deposit"><span class="opt">Failed closing / deposit</span></label>
-        <label data-cat="re" hidden><input type="radio" name="type" value="Co-ownership / partition"><span class="opt">Co-ownership / partition</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Assignment dispute"><span class="opt">Assignment dispute</span></label>
-        <label data-cat="re" hidden><input type="radio" name="type" value="Estate property"><span class="opt">Estate property</span></label>
-        <label data-cat="re" hidden><input type="radio" name="type" value="Siblings / inheritance over property"><span class="opt">Siblings / inheritance over property</span></label>
+        <label data-cat="re" hidden><input type="radio" name="type" value="Extension or price dispute"><span class="opt">Extension or price dispute</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Post-closing / disclosure"><span class="opt">Post-closing / disclosure</span></label>
         <label data-cat="re" hidden><input type="radio" name="type" value="Commercial lease"><span class="opt">Commercial lease</span></label>
-        <label data-cat="bus" hidden><input type="radio" name="type" value="Partnership / shareholder"><span class="opt">Partnership / shareholder</span></label>
-        <label data-cat="bus" hidden><input type="radio" name="type" value="Commercial contract"><span class="opt">Commercial contract</span></label>
-        <label data-cat="bus" hidden><input type="radio" name="type" value="Vendor or supplier"><span class="opt">Vendor or supplier</span></label>
-        <label data-cat="bus" hidden><input type="radio" name="type" value="Business break-up or exit"><span class="opt">Business break-up or exit</span></label>
-        <label data-cat="bus" hidden><input type="radio" name="type" value="Family business"><span class="opt">Family business</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="Co-ownership / partition"><span class="opt">Co-ownership / partition</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="Partners or shareholders who own property"><span class="opt">Partners or shareholders who own property</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="One wants out, one wants to keep it"><span class="opt">One wants out, one wants to keep it</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="Family business with a property in it"><span class="opt">Family business with a property in it</span></label>
+        <label data-cat="bus" hidden><input type="radio" name="type" value="Buyout or negotiated exit"><span class="opt">Buyout or negotiated exit</span></label>
         <label data-cat="fam" hidden><input type="radio" name="type" value="Separation / the family home"><span class="opt">Separation / the family home</span></label>
         <label data-cat="fam" hidden><input type="radio" name="type" value="Separation / a shared property or business"><span class="opt">Separation / a shared property or business</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Estate or inheritance"><span class="opt">Estate or inheritance</span></label>
+        <label data-cat="fam" hidden><input type="radio" name="type" value="Estate property"><span class="opt">Estate property</span></label>
+        <label data-cat="fam" hidden><input type="radio" name="type" value="Siblings / inheritance over property"><span class="opt">Siblings / inheritance over property</span></label>
         <label data-cat="fam" hidden><input type="radio" name="type" value="Parents, siblings, and a property"><span class="opt">Parents, siblings, and a property</span></label>
-        <label data-cat="fam" hidden><input type="radio" name="type" value="Something else in the family"><span class="opt">Something else in the family</span></label>
         <label data-cat="oth" hidden><input type="radio" name="type" value="Something else"><span class="opt">Something else</span></label>
         </div>
       </div>
