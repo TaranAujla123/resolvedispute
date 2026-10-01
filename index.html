@@ -203,6 +203,7 @@
   .cred li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--dim)}
   .cred .credlabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:24px}
   .cred .credlabel + ul{margin-top:10px}
+  .cred .fold-btn{margin-top:20px}
   .who p{color:var(--bone-2);margin-bottom:18px;max-width:60ch}
   .who p b{color:var(--bone);font-weight:500}
   .pledge{margin-top:30px;padding:24px 26px;background:var(--panel);border:1px solid var(--line);border-radius:3px}
@@ -496,6 +497,8 @@
         <li>REALTOR&reg; &middot; Ontario</li>
         <li>Registered &middot; Real Estate Council of Ontario</li>
       </ul>
+      <input type="checkbox" id="credmore" class="fold-chk">
+      <div class="fold-body">
       <div class="credlabel">Background</div>
       <ul>
         <li>Former lawyer &middot; 10 years</li>
@@ -510,6 +513,8 @@
       <ul>
         <li>English &middot; French &middot; Punjabi</li>
       </ul>
+      </div>
+      <label class="fold-btn" for="credmore"><span class="more">Background and education</span><span class="less">Show less</span></label>
     </div>
     <div>
       <div class="eyebrow" style="margin-bottom:22px">Who runs the room</div>
