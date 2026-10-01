@@ -2,6 +2,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Real estate dispute resolution in Ontario. Private mediation for disputes with a property at the centre &mdash; co-owners, partners, estates, separations. Fixed fee, weeks not years.">
 <meta name="robots" content="noindex, nofollow">
+<!-- Meta pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','26914854838125099');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></noscript>
+<!-- /Meta pixel -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -782,7 +795,8 @@
 
 <footer><div class="wrap">
   <p class="disc"><b>Resolve Mediation provides impartial dispute resolution, not legal advice.</b> The mediator is neutral, acts for neither party, expresses views on the matters at issue rather than advice to a party, and recommends that each party obtain independent legal advice. Decision-making authority rests with the parties at all times. Any settlement is recorded in a memorandum of understanding, which the parties may put into binding form themselves or through their own counsel.</p>
-  <p class="sig" style="margin-bottom:10px"><a href="/caselaw/" style="color:inherit">Reference &mdash; the leading cases behind these disputes</a></p>
+  <p class="sig" style="margin-bottom:10px"><a href="/caselaw/" style="color:inherit">Reference &mdash; the leading cases behind these disputes</a>
+  <p class="sig" style="margin-bottom:10px"><a href="/privacy/" style="color:inherit">Privacy &mdash; what this site collects</a></p>
   <p class="sig">Resolve Mediation &middot; Taran Aujla &mdash; former business &amp; real estate lawyer; Salesperson, HomeLife G1 Realty Inc., Brokerage &middot; Ontario</p>
 </div></footer>
 
@@ -875,6 +889,7 @@
       fd.append('email',val('email'));fd.append('phone',val('phone'));
       fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
         .then(function(r){if(!r.ok)throw new Error('bad');
+          if(window.fbq)fbq('track','Lead',{content_category:val('type')||'mediation'});
           inqf.style.display='none';var d=document.getElementById('inqdone');d.hidden=false;
           d.scrollIntoView({behavior:'smooth',block:'center'});})
         .catch(function(){btn.disabled=false;btn.textContent='Send the inquiry';
