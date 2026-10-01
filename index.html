@@ -87,6 +87,22 @@
   .btn .arw{transition:transform .25s}.btn:hover .arw{transform:translateX(4px)}
 
   section{padding:78px 0;border-top:1px solid var(--line-2)}
+  /* Collapsible on small screens only. The section is fine on desktop and
+     unreadable on a phone, so the fold is a media query, not a feature. */
+  .fold-chk{position:absolute;opacity:0;pointer-events:none}
+  .fold-btn{display:none}
+  @media(max-width:760px){
+    .fold-body{max-height:0;overflow:hidden;transition:max-height .28s ease}
+    .fold-chk:checked ~ .fold-body{max-height:1600px}
+    .fold-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+      font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--brass);border:1px solid var(--line);padding:11px 18px;margin:16px 0 4px}
+    .fold-btn::after{content:'+';font-size:15px;line-height:1}
+    .fold-chk:checked ~ .fold-btn::after{content:'2'}
+    .fold-btn .less{display:none}
+    .fold-chk:checked ~ .fold-btn .more{display:none}
+    .fold-chk:checked ~ .fold-btn .less{display:inline}
+  }
   .hero-cred{margin-top:26px;padding-top:20px;border-top:1px solid var(--line-2);
     color:var(--bone-2);font-size:15.5px;line-height:1.6;max-width:66ch}
   .hero-cred b{color:var(--bone);font-weight:600}
@@ -310,7 +326,7 @@
   <div class="eyebrow">Real Estate Dispute Resolution &middot; Ontario</div>
   <h1>The goal isn&rsquo;t to win the argument. It&rsquo;s to <em>solve the problem.</em></h1>
   <div class="rule" aria-hidden="true"></div>
-  <p class="lede">One thing, done properly: disputes with real estate at the centre of them. Whoever is on the other side &mdash; a co-owner, a business partner, a sibling, a former spouse. Looking past the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next.</p>
+  <p class="lede">One thing, done properly: disputes with real estate at the centre of them. Whoever is on the other side &mdash; a buyer who didn&rsquo;t close, a co-owner, a business partner, a sibling, a former spouse. Looking past the legal positions to what actually needs resolving: the money, the timing, the relationships, and what happens next.</p>
   <ul class="benefits" aria-label="How this is different">
     <li>In weeks, not years</li>
     <li>One fixed fee</li>
@@ -498,8 +514,10 @@
     <div>
       <div class="eyebrow" style="margin-bottom:22px">Who runs the room</div>
       <p>For close to a decade I practised business and real estate law in Ontario, and worked through several hundred transactions and complex matters. But the disputes worth solving were never only about the law. They were about people, money, timing, pride, and what happens next.</p>
-      <p>So that is how I work a problem. I look at all of it: the legal exposure, the numbers, what the property is actually worth, who needs what by when, and what each side can realistically live with. Then I keep asking questions until the answer is obvious to both of you rather than just to me.</p>
-      <p>I am not there to re-argue the law. Your lawyer does that, and should. What I bring is the transaction itself. Having sat on the legal side of several hundred of these, and selling property now, I know where a deal actually breaks, what each step costs, and how long it really takes. Most of these are solvable long before anyone files anything, and for a fraction of what the fight would cost.</p>
+      <input type="checkbox" id="whomore" class="fold-chk">
+      <div class="fold-body"><p>So that is how I work a problem. I look at all of it: the legal exposure, the numbers, what the property is actually worth, who needs what by when, and what each side can realistically live with. Then I keep asking questions until the answer is obvious to both of you rather than just to me.</p>
+      <p>I am not there to re-argue the law. Your lawyer does that, and should. What I bring is the transaction itself. Having sat on the legal side of several hundred of these, and selling property now, I know where a deal actually breaks, what each step costs, and how long it really takes. Most of these are solvable long before anyone files anything, and for a fraction of what the fight would cost.</p></div>
+      <label class="fold-btn" for="whomore"><span class="more">How I work a problem</span><span class="less">Show less</span></label>
       <p><b>Your lawyer and your agent stay exactly where they are.</b> I work alongside them, not instead of them, and I am happy to deal with them directly if that is easier for you. Nothing I do replaces independent advice, and I tell every party to get it.</p>
       <p><b>I am neutral by design.</b> I act for neither side, I give no legal advice, and the decision is always yours.</p>
       <div class="pledge">
