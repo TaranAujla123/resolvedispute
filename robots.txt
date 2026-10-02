@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Private. Reached by a link, not by search.
+Disallow: /dr-9f42/
+Disallow: /caselaw/
+Disallow: /strategies/
+Disallow: /invited/
+
+Sitemap: https://getresolve.ca/sitemap.xml
