@@ -90,6 +90,25 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
         margin-top:16px}
   .alt a{color:var(--brass);text-decoration:none}
 
+  /* Capture card. Paid traffic needs the ask on screen, not after 900 words. */
+  .cap{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+       padding:26px 26px 22px;margin-top:34px;max-width:470px}
+  .cap h2{font-size:19px;line-height:1.25;margin-bottom:6px}
+  .cap .capsub{font-size:14.5px;color:var(--bone-2);line-height:1.5;margin-bottom:18px}
+  .cap label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .cap input,.cap textarea{width:100%;background:var(--ground);border:1px solid var(--line);
+    border-radius:3px;color:var(--bone);font-family:var(--disp);font-size:16px;
+    padding:11px 12px;margin-bottom:13px;box-sizing:border-box}
+  .cap textarea{min-height:66px;resize:vertical;line-height:1.45}
+  .cap input:focus,.cap textarea:focus{outline:none;border-color:var(--brass)}
+  .cap button{width:100%;background:var(--brass);color:#0E1512;font-weight:600;font-size:16px;
+    border:none;border-radius:2px;padding:14px;cursor:pointer;font-family:var(--disp)}
+  .cap button[disabled]{opacity:.6}
+  .cap .capfoot{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+  .cap .caperr{display:none;color:#C4906A;font-size:13px;margin-top:10px}
+  .capdone{display:none;padding:4px 0}
+  .capdone h2{color:var(--brass)}
   footer{padding:40px 0 64px;border-top:1px solid var(--line-2);margin-top:20px}
   .disc{font-size:13.5px;line-height:1.6;color:var(--dim)}
   .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim);margin-top:16px}
@@ -109,6 +128,33 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   <div class="eyebrow">Failed closing &middot; Ontario</div>
   <h1>The buyer didn&rsquo;t close. <em>What happens now?</em></h1>
   <p class="lede">It is the week nobody plans for. The money did not arrive, your own purchase may depend on it, and the advice you are getting is to sue. Before you commit to that, it is worth knowing what the whole road looks like.</p>
+  <div class="cap">
+    <div id="capform-wrap">
+      <h2>A deal that did not close</h2>
+      <p class="capsub">Tell me what happened. If mediation is not right for it, I will say so.</p>
+      <form id="capform" novalidate>
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="given-name" required>
+        <label for="cf-phone">Phone</label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" required>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        <label for="cf-detail">What has happened <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <textarea id="cf-detail" name="detail"></textarea>
+        <input type="hidden" name="magnet" value="buyer-did-not-close">
+        <input type="hidden" name="_subject" value="Resolve Mediation inquiry &mdash; buyer-did-not-close">
+        <button type="submit" id="cf-btn">Start a confidential inquiry</button>
+        <p class="caperr" id="cf-err"></p>
+        <p class="capfoot">Private, and nothing is sent to anyone else without your go-ahead.
+          Prefer to talk first? Call or text <a href="tel:+13656457332" style="color:var(--brass)">(365)&nbsp;645-7332</a>.</p>
+      </form>
+    </div>
+    <div class="capdone" id="capdone">
+      <h2>Thank you. Your inquiry is in.</h2>
+      <p class="capsub">I reply personally, and in confidence, within one business day. If it is
+        time-sensitive, call (365)&nbsp;645-7332.</p>
+    </div>
+  </div>
 </div></header>
 
 <section><div class="wrap"><h2>What is probably happening</h2><p>Most failed closings in this market are not bad faith. They are financing. The lender appraised below the purchase price, the buyer is suddenly short the difference, and nobody involved has that cash sitting in an account. The appraisal gap has become one of the most common reasons deals die in Ontario, and it produces a buyer who is not refusing to close so much as unable to.</p><p class="solid">That distinction matters more than it sounds, because it changes what is actually recoverable.</p></div></section><section><div class="wrap"><h2>The two roads</h2><div class="two"><div class="c a"><div class="ct">The usual one</div><p>You instruct a litigator. A claim is issued. The buyer defends, and if they had no money to close they have no money for a judgment either.</p><p>Eighteen months to two years. Tens of thousands per side. The property sits, or you resell into whatever market exists by then.</p><p>You may win. A judgment is a claim against someone, not money in your account, and collecting it is a second job.</p></div><div class="c b"><div class="ct">The other one</div><p>Both sides in a room within weeks, with someone neutral who has done this before.</p><p>The conversation is not who breached. It is what can be salvaged: an extension with a price adjustment, a larger non-refundable deposit, a vendor take-back for the shortfall, an assignment to a replacement buyer, or a clean mutual release with a number attached.</p><p>One fixed fee, split. Private. Nothing filed, nothing searchable.</p></div></div><p>Neither road is automatically right. But almost nobody gets told the second one exists, and by the time they hear about it the legal costs have already changed the maths.</p></div></section><section><div class="wrap"><h2>The questions worth answering before you decide</h2><ul class="pts"><li>Does the buyer actually have assets, or would a judgment be a piece of paper?</li><li>What does the property realistically sell for now, and how does that compare to your contract price?</li><li>What is it costing you to carry it in the meantime?</li><li>Is your own purchase depending on this closing?</li><li>How much of the deposit is in trust, and on what terms?</li></ul><div class="box"><div class="bh">Worth knowing</div><p>In Ontario, a deposit and a claim for damages are two different things, and the answers turn on your specific agreement and what actually happened. That is a question for your own lawyer, and you should ask them. What this page is for is the part they are not retained to tell you: what each road costs, how long it takes, and what you are likely to be left holding at the end of it.</p></div></div></section><section><div class="wrap"><h2>Where a neutral fits</h2><p>I am not on either side. I do not decide anything and I cannot impose an outcome. What I do is get both parties looking at the same set of facts and the same arithmetic at the same time, which is the thing that almost never happens once two lawyers are writing letters.</p><p class="solid">A failed closing is the one dispute with a real clock on it. Every week it stays unresolved costs both sides something, and both of them know it. That is exactly the condition in which these settle.</p></div></section>
@@ -128,4 +174,24 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   your situation, and this page is written to help you arrive at that conversation better prepared.</p>
   <p class="sig">Resolve &middot; Taran Aujla &mdash; Ontario</p>
 </div></footer>
+<script>
+(function(){
+  var f=document.getElementById('capform'); if(!f) return;
+  var btn=document.getElementById('cf-btn'), err=document.getElementById('cf-err');
+  function fail(m){ err.textContent=m; err.style.display='block';
+    btn.disabled=false; btn.textContent='Start a confidential inquiry'; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!f.name.value.trim() || !f.phone.value.trim() || !f.email.value.trim()){
+      fail('Name, phone and email, so I can reach you.'); return; }
+    err.style.display='none'; btn.disabled=true; btn.textContent='Sending...';
+    fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){ if(!r.ok) throw new Error('bad');
+        document.getElementById('capform-wrap').style.display='none';
+        document.getElementById('capdone').style.display='block'; })
+      .catch(function(){ fail('That did not go through. Please call or text (365) 645-7332.'); });
+  });
+})();
+</script>
+<script src="/lead-beacon.js"></script>
 </body></html>

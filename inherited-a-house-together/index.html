@@ -90,6 +90,25 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
         margin-top:16px}
   .alt a{color:var(--brass);text-decoration:none}
 
+  /* Capture card. Paid traffic needs the ask on screen, not after 900 words. */
+  .cap{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+       padding:26px 26px 22px;margin-top:34px;max-width:470px}
+  .cap h2{font-size:19px;line-height:1.25;margin-bottom:6px}
+  .cap .capsub{font-size:14.5px;color:var(--bone-2);line-height:1.5;margin-bottom:18px}
+  .cap label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .cap input,.cap textarea{width:100%;background:var(--ground);border:1px solid var(--line);
+    border-radius:3px;color:var(--bone);font-family:var(--disp);font-size:16px;
+    padding:11px 12px;margin-bottom:13px;box-sizing:border-box}
+  .cap textarea{min-height:66px;resize:vertical;line-height:1.45}
+  .cap input:focus,.cap textarea:focus{outline:none;border-color:var(--brass)}
+  .cap button{width:100%;background:var(--brass);color:#0E1512;font-weight:600;font-size:16px;
+    border:none;border-radius:2px;padding:14px;cursor:pointer;font-family:var(--disp)}
+  .cap button[disabled]{opacity:.6}
+  .cap .capfoot{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+  .cap .caperr{display:none;color:#C4906A;font-size:13px;margin-top:10px}
+  .capdone{display:none;padding:4px 0}
+  .capdone h2{color:var(--brass)}
   footer{padding:40px 0 64px;border-top:1px solid var(--line-2);margin-top:20px}
   .disc{font-size:13.5px;line-height:1.6;color:var(--dim)}
   .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim);margin-top:16px}
@@ -109,6 +128,33 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   <div class="eyebrow">Estate property &middot; Ontario</div>
   <h1>One house. <em>Three people who cannot agree.</em></h1>
   <p class="lede">Someone has died, there is a property, and the people who have to decide what happens to it are the people least able to have that conversation right now. This is one of the most common disputes there is, and one of the most expensive to get wrong.</p>
+  <div class="cap">
+    <div id="capform-wrap">
+      <h2>An estate nobody can agree on</h2>
+      <p class="capsub">Tell me the situation. If it needs a lawyer before it needs me, I will say that.</p>
+      <form id="capform" novalidate>
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="given-name" required>
+        <label for="cf-phone">Phone</label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" required>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        <label for="cf-detail">What has happened <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <textarea id="cf-detail" name="detail"></textarea>
+        <input type="hidden" name="magnet" value="inherited-a-house-together">
+        <input type="hidden" name="_subject" value="Resolve Mediation inquiry &mdash; inherited-a-house-together">
+        <button type="submit" id="cf-btn">Start a confidential inquiry</button>
+        <p class="caperr" id="cf-err"></p>
+        <p class="capfoot">Private, and nothing is sent to anyone else without your go-ahead.
+          Prefer to talk first? Call or text <a href="tel:+13656457332" style="color:var(--brass)">(365)&nbsp;645-7332</a>.</p>
+      </form>
+    </div>
+    <div class="capdone" id="capdone">
+      <h2>Thank you. Your inquiry is in.</h2>
+      <p class="capsub">I reply personally, and in confidence, within one business day. If it is
+        time-sensitive, call (365)&nbsp;645-7332.</p>
+    </div>
+  </div>
 </div></header>
 
 <section><div class="wrap"><h2>What is usually underneath it</h2><p>Rarely the house. In most of these files it is some combination of:</p><ul class="pts"><li>Who cared for the parent in the last two years, and whether anyone has ever said so out loud.</li><li>A promise made verbally, and remembered three different ways.</li><li>The sibling who is estate trustee being treated as though they are stealing, when they are drowning in work nobody else wanted.</li><li>Someone who needs the money now and someone who does not.</li><li>And underneath all of it: this is the last thing this family will ever divide.</li></ul><p class="solid">A court can order the property sold. It cannot do anything about any of the above, and the process will make most of it worse.</p></div></section><section><div class="wrap"><h2>The two roads</h2><div class="two"><div class="c a"><div class="ct">Estate litigation</div><p>Slow, and expensive in a way that is particularly painful here &mdash; the legal costs often come out of the estate, which means every side is paying for all of it.</p><p>The trustee is personally exposed and behaves defensively, which makes them look worse, which escalates it further.</p><p>A public court record.</p><p>Whatever is left of the family afterward.</p></div><div class="c b"><div class="ct">A mediated resolution</div><p>The contents dealt with before the money, because the furniture fight is about who is remembered and it will poison everything else if left underneath.</p><p>The trustee&rsquo;s two roles separated out loud &mdash; the person and the office &mdash; so criticism of the administration stops reading as an attack on a sibling.</p><p>One jointly instructed appraiser instead of three competing opinions.</p><p>Buyout, sale, or one beneficiary taking the property against their share, with the numbers actually worked out.</p></div></div></div></section><section><div class="wrap"><h2>Where this needs a lawyer and not me</h2><div class="warn"><div class="bh">Refer out</div><p>Questions about whether the will is valid, whether the person had capacity, whether anyone was unduly influenced, dependant support claims, and a contested passing of accounts are estate litigation. I do not do any of that, and a file where those are live needs counsel before it needs a mediator.</p><p>What I can help with is the part underneath: several people, one property, and a decision that has to be made.</p></div></div></section>
@@ -128,4 +174,24 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   your situation, and this page is written to help you arrive at that conversation better prepared.</p>
   <p class="sig">Resolve &middot; Taran Aujla &mdash; Ontario</p>
 </div></footer>
+<script>
+(function(){
+  var f=document.getElementById('capform'); if(!f) return;
+  var btn=document.getElementById('cf-btn'), err=document.getElementById('cf-err');
+  function fail(m){ err.textContent=m; err.style.display='block';
+    btn.disabled=false; btn.textContent='Start a confidential inquiry'; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!f.name.value.trim() || !f.phone.value.trim() || !f.email.value.trim()){
+      fail('Name, phone and email, so I can reach you.'); return; }
+    err.style.display='none'; btn.disabled=true; btn.textContent='Sending...';
+    fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){ if(!r.ok) throw new Error('bad');
+        document.getElementById('capform-wrap').style.display='none';
+        document.getElementById('capdone').style.display='block'; })
+      .catch(function(){ fail('That did not go through. Please call or text (365) 645-7332.'); });
+  });
+})();
+</script>
+<script src="/lead-beacon.js"></script>
 </body></html>

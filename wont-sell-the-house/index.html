@@ -90,6 +90,25 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
         margin-top:16px}
   .alt a{color:var(--brass);text-decoration:none}
 
+  /* Capture card. Paid traffic needs the ask on screen, not after 900 words. */
+  .cap{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+       padding:26px 26px 22px;margin-top:34px;max-width:470px}
+  .cap h2{font-size:19px;line-height:1.25;margin-bottom:6px}
+  .cap .capsub{font-size:14.5px;color:var(--bone-2);line-height:1.5;margin-bottom:18px}
+  .cap label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .cap input,.cap textarea{width:100%;background:var(--ground);border:1px solid var(--line);
+    border-radius:3px;color:var(--bone);font-family:var(--disp);font-size:16px;
+    padding:11px 12px;margin-bottom:13px;box-sizing:border-box}
+  .cap textarea{min-height:66px;resize:vertical;line-height:1.45}
+  .cap input:focus,.cap textarea:focus{outline:none;border-color:var(--brass)}
+  .cap button{width:100%;background:var(--brass);color:#0E1512;font-weight:600;font-size:16px;
+    border:none;border-radius:2px;padding:14px;cursor:pointer;font-family:var(--disp)}
+  .cap button[disabled]{opacity:.6}
+  .cap .capfoot{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+  .cap .caperr{display:none;color:#C4906A;font-size:13px;margin-top:10px}
+  .capdone{display:none;padding:4px 0}
+  .capdone h2{color:var(--brass)}
   footer{padding:40px 0 64px;border-top:1px solid var(--line-2);margin-top:20px}
   .disc{font-size:13.5px;line-height:1.6;color:var(--dim)}
   .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim);margin-top:16px}
@@ -109,6 +128,33 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   <div class="eyebrow">Co-ownership &middot; Ontario</div>
   <h1>They won&rsquo;t sell, <em>and they won&rsquo;t buy you out.</em></h1>
   <p class="lede">A brother, a sister, an ex-partner, a friend you bought with in a better year. Your name is on it, your money is in it, and you cannot get either of them out without their signature. Or so it looks from here.</p>
+  <div class="cap">
+    <div id="capform-wrap">
+      <h2>A co-owner who will not move</h2>
+      <p class="capsub">Tell me the situation. I approach them neutrally, and never without your go-ahead.</p>
+      <form id="capform" novalidate>
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="given-name" required>
+        <label for="cf-phone">Phone</label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" required>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        <label for="cf-detail">What has happened <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <textarea id="cf-detail" name="detail"></textarea>
+        <input type="hidden" name="magnet" value="wont-sell-the-house">
+        <input type="hidden" name="_subject" value="Resolve Mediation inquiry &mdash; wont-sell-the-house">
+        <button type="submit" id="cf-btn">Start a confidential inquiry</button>
+        <p class="caperr" id="cf-err"></p>
+        <p class="capfoot">Private, and nothing is sent to anyone else without your go-ahead.
+          Prefer to talk first? Call or text <a href="tel:+13656457332" style="color:var(--brass)">(365)&nbsp;645-7332</a>.</p>
+      </form>
+    </div>
+    <div class="capdone" id="capdone">
+      <h2>Thank you. Your inquiry is in.</h2>
+      <p class="capsub">I reply personally, and in confidence, within one business day. If it is
+        time-sensitive, call (365)&nbsp;645-7332.</p>
+    </div>
+  </div>
 </div></header>
 
 <section><div class="wrap"><h2>The part most people do not know</h2><p>Under section 2 of Ontario&rsquo;s <em>Partition Act</em>, a co-owner &mdash; joint tenant or tenant in common &mdash; has a <strong>prima facie right</strong> to compel partition or sale, and the other co-owners have a corresponding obligation to permit it. It is not absolute. A court keeps a discretion and can refuse where the person asking is acting maliciously, vexatiously or oppressively, and it will consider anyone living there.</p><p class="solid">The practical effect is that the person refusing usually cannot simply refuse forever. Which means the real question is not <em>whether</em> it gets resolved. It is on whose terms, and how much of the value survives the process.</p><p>Get your own lawyer to tell you how that applies to your situation. It will apply differently depending on the facts.</p></div></section><section><div class="wrap"><h2>What it is actually about</h2><p>Almost never the price. Underneath, in rough order of how often it comes up:</p><ul class="pts"><li>One of you has been living there and the other has been paying.</li><li>One did the work on it and the other watched the value go up.</li><li>A parent said something years ago that everyone remembers differently.</li><li>One of you has a spouse driving this who is not in the room.</li><li>Somebody feels they were treated as though they did not count.</li></ul><p>None of that is in a statement of claim, and none of it gets resolved by one. But it is usually what is actually holding the thing up.</p></div></section><section><div class="wrap"><h2>The two roads</h2><div class="two"><div class="c a"><div class="ct">An application</div><p>Twelve to twenty months, contested.</p><p>Legal costs on both sides, out of the same pot &mdash; it is your equity either way.</p><p>You keep paying half of everything and receive nothing while it runs.</p><p>A court-ordered sale is not a well-prepared listing. It is rarely the number either of you had in mind.</p><p>And you will not be speaking afterward.</p></div><div class="c b"><div class="ct">A mediated resolution</div><p>Weeks, not years.</p><p>Staged buyout, a listing trial at an agreed price with a pre-agreed reduction schedule, an appraisal collar where you cannot agree on value, or a clean sale with the accounting sorted properly.</p><p>The occupancy question, the contributions question and the mortgage release all handled in the same conversation instead of three separate fights.</p><p>One fixed fee, split. Private.</p></div></div></div></section><section><div class="wrap"><h2>The thing worth doing before anything else</h2><div class="box"><div class="bh">The number nobody has run</div><p>What is the property actually worth today, what would a court-ordered sale net against a properly prepared one, and what does eighteen months of carrying it cost the two of you between you?</p><p>Most co-ownership fights are conducted entirely without that arithmetic. It is frequently the thing that ends them, because both people discover they are arguing over less than the fight will cost.</p></div></div></section>
@@ -128,4 +174,24 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   your situation, and this page is written to help you arrive at that conversation better prepared.</p>
   <p class="sig">Resolve &middot; Taran Aujla &mdash; Ontario</p>
 </div></footer>
+<script>
+(function(){
+  var f=document.getElementById('capform'); if(!f) return;
+  var btn=document.getElementById('cf-btn'), err=document.getElementById('cf-err');
+  function fail(m){ err.textContent=m; err.style.display='block';
+    btn.disabled=false; btn.textContent='Start a confidential inquiry'; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!f.name.value.trim() || !f.phone.value.trim() || !f.email.value.trim()){
+      fail('Name, phone and email, so I can reach you.'); return; }
+    err.style.display='none'; btn.disabled=true; btn.textContent='Sending...';
+    fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){ if(!r.ok) throw new Error('bad');
+        document.getElementById('capform-wrap').style.display='none';
+        document.getElementById('capdone').style.display='block'; })
+      .catch(function(){ fail('That did not go through. Please call or text (365) 645-7332.'); });
+  });
+})();
+</script>
+<script src="/lead-beacon.js"></script>
 </body></html>

@@ -90,6 +90,25 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
         margin-top:16px}
   .alt a{color:var(--brass);text-decoration:none}
 
+  /* Capture card. Paid traffic needs the ask on screen, not after 900 words. */
+  .cap{background:var(--panel);border:1px solid var(--line);border-radius:4px;
+       padding:26px 26px 22px;margin-top:34px;max-width:470px}
+  .cap h2{font-size:19px;line-height:1.25;margin-bottom:6px}
+  .cap .capsub{font-size:14.5px;color:var(--bone-2);line-height:1.5;margin-bottom:18px}
+  .cap label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .cap input,.cap textarea{width:100%;background:var(--ground);border:1px solid var(--line);
+    border-radius:3px;color:var(--bone);font-family:var(--disp);font-size:16px;
+    padding:11px 12px;margin-bottom:13px;box-sizing:border-box}
+  .cap textarea{min-height:66px;resize:vertical;line-height:1.45}
+  .cap input:focus,.cap textarea:focus{outline:none;border-color:var(--brass)}
+  .cap button{width:100%;background:var(--brass);color:#0E1512;font-weight:600;font-size:16px;
+    border:none;border-radius:2px;padding:14px;cursor:pointer;font-family:var(--disp)}
+  .cap button[disabled]{opacity:.6}
+  .cap .capfoot{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+  .cap .caperr{display:none;color:#C4906A;font-size:13px;margin-top:10px}
+  .capdone{display:none;padding:4px 0}
+  .capdone h2{color:var(--brass)}
   footer{padding:40px 0 64px;border-top:1px solid var(--line-2);margin-top:20px}
   .disc{font-size:13.5px;line-height:1.6;color:var(--dim)}
   .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim);margin-top:16px}
@@ -109,6 +128,33 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   <div class="eyebrow">Separation &middot; Ontario</div>
   <h1>We are separating. <em>What happens to the house?</em></h1>
   <p class="lede">It is usually the largest thing either of you owns, and the decision has to be made while everything else is also happening. This page is about the property question only &mdash; which is one part of something much bigger that belongs with your own lawyer.</p>
+  <div class="cap">
+    <div id="capform-wrap">
+      <h2>A separation, and a property</h2>
+      <p class="capsub">Tell me the situation. You each keep your own lawyer; this is the property question only.</p>
+      <form id="capform" novalidate>
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="given-name" required>
+        <label for="cf-phone">Phone</label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" required>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        <label for="cf-detail">What has happened <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+        <textarea id="cf-detail" name="detail"></textarea>
+        <input type="hidden" name="magnet" value="separating-what-happens-to-the-house">
+        <input type="hidden" name="_subject" value="Resolve Mediation inquiry &mdash; separating-what-happens-to-the-house">
+        <button type="submit" id="cf-btn">Start a confidential inquiry</button>
+        <p class="caperr" id="cf-err"></p>
+        <p class="capfoot">Private, and nothing is sent to anyone else without your go-ahead.
+          Prefer to talk first? Call or text <a href="tel:+13656457332" style="color:var(--brass)">(365)&nbsp;645-7332</a>.</p>
+      </form>
+    </div>
+    <div class="capdone" id="capdone">
+      <h2>Thank you. Your inquiry is in.</h2>
+      <p class="capsub">I reply personally, and in confidence, within one business day. If it is
+        time-sensitive, call (365)&nbsp;645-7332.</p>
+    </div>
+  </div>
 </div></header>
 
 <section><div class="wrap"><h2>Read this part first</h2><div class="warn"><div class="bh">Where I stop</div><p>A matrimonial home in Ontario has a special status that does not attach to other property, and how family property is divided, what support is payable, and how those interact are family law questions. <strong>You each need your own lawyer for that, and you should get one before you agree to anything.</strong></p><p>I do not advise on entitlement, I do not draft separation agreements, and I do not tell either of you what you would get.</p><p>And if there is any suggestion of fear, control or coercion in your situation, this is not the right process and I will say so. That is not something to manage with a better technique.</p></div></div></section><section><div class="wrap"><h2>What I can actually help with</h2><p>The narrow, practical question, with both of you independently advised: <strong>what happens to the property.</strong></p><ul class="pts"><li>Sell now, sell later, or one of you buys the other out.</li><li>What it is genuinely worth, rather than what either of you hopes.</li><li>What a buyout actually requires &mdash; and whether the lender will release the other person from the mortgage, which is the step that quietly kills most of them.</li><li>Who lives there in the meantime, who pays what, and for how long.</li><li>Timing, including whether a school year or a market matters here.</li></ul></div></section><section><div class="wrap"><h2>Why this one is worth resolving out of court</h2><div class="two"><div class="c a"><div class="ct">Litigated</div><p>Long, and the legal costs come out of the same pool you are dividing.</p><p>A public record.</p><p>Every month it runs, the carrying costs and the professional fees reduce what there is to divide.</p><p>And if there are children, they are watching how the two of you do this.</p></div><div class="c b"><div class="ct">Worked out</div><p>Weeks. Private. Nothing filed.</p><p>You decide, rather than someone who has never met either of you.</p><p>The property question resolved cleanly so your lawyers can deal with the rest of it from a settled starting point rather than a contested one.</p><p>One fixed fee, usually split.</p></div></div></div></section>
@@ -128,4 +174,24 @@ src="https://www.facebook.com/tr?id=26914854838125099&ev=PageView&noscript=1"></
   your situation, and this page is written to help you arrive at that conversation better prepared.</p>
   <p class="sig">Resolve &middot; Taran Aujla &mdash; Ontario</p>
 </div></footer>
+<script>
+(function(){
+  var f=document.getElementById('capform'); if(!f) return;
+  var btn=document.getElementById('cf-btn'), err=document.getElementById('cf-err');
+  function fail(m){ err.textContent=m; err.style.display='block';
+    btn.disabled=false; btn.textContent='Start a confidential inquiry'; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!f.name.value.trim() || !f.phone.value.trim() || !f.email.value.trim()){
+      fail('Name, phone and email, so I can reach you.'); return; }
+    err.style.display='none'; btn.disabled=true; btn.textContent='Sending...';
+    fetch('https://formspree.io/f/xkoezqwa',{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){ if(!r.ok) throw new Error('bad');
+        document.getElementById('capform-wrap').style.display='none';
+        document.getElementById('capdone').style.display='block'; })
+      .catch(function(){ fail('That did not go through. Please call or text (365) 645-7332.'); });
+  });
+})();
+</script>
+<script src="/lead-beacon.js"></script>
 </body></html>
